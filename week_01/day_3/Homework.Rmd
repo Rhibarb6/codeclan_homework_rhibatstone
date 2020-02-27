@@ -1,0 +1,28 @@
+---
+title: "Homework"
+output: html_notebook
+---
+```{r}
+library(CodeClanData)
+class(beer)
+class(temp)
+class(game_of_thrones)
+```
+
+```{r}
+min(beer$carbohydrates)
+max(beer$carbohydrates)
+
+mean_less_than_5_carbs <- mean(beer$carbohydrates < 5)
+mean_more_than_25_carbs <- mean(beer$carbohydrates > 20)
+
+highest_percent_beer <- max(beer$percent)
+mean(beer$percent)
+mean(beer$calories)
+mean(beer$carbohydrates)
+
+as.double(beer$calories)
+mean(beer$calories)
+```
+
+

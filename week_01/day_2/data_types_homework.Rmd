@@ -17,31 +17,46 @@ day_of_week
 ```
 
 
+
+
+
+
 Q2. 
 ```{r}
 day_of_week_factor <- as.factor(day_of_week)
 ```
 
 ```{r}
-named_stock_prices <- c(day_of_week, stock_prices)
+named_stock_prices <- stock_prices
+names(named_stock_prices) <- day_of_week  
+
 named_stock_prices
 ```
 
 
+
+
+
+
 Q3.
 ```{r}
+
 stock_data <- data.frame(day_of_week, stock_prices)
 View(stock_data)
 ```
 
 
+
+
 Q4. 
 ```{r}
-stock_list <- list("Stock Prices" = stock_prices, "Days" = day_of_week, "Data" = stock_data)
+stock_list <- list( stock_prices = stock_prices, day_of_week = day_of_week, stock_data = stock_data)
 
 stock_list
 
 ```
+
+
 
 
 Part 2
@@ -51,12 +66,14 @@ stock_prices[4:6]
 ```
 
 
+
+
 Q2
 ```{r}
-data.frame(stock_data$stock_prices)
+stock_data$day_of_week
 ```
 ```{r}
-stock_data[stock_data$stock_prices < 25, ]
+subset(stock_data, stock_prices < 25)
 ```
 ```{r}
 stock_data[ , 1]
@@ -67,12 +84,25 @@ stock_data[3, ]
 ```
 
 ```{r}
-stock_data[1,3]
+stock_data[3, 1]
 ```
+
+
+
 
 
 Q4.
 ```{r}
-stock_list[[3]]
+stock_list$stock_data
+```
+
+```{r}
+library(tidyquant)
+```
+
+```{r}
+?tidyquant
+
+browseVignettes(package = "tidyquant")
 ```
 
