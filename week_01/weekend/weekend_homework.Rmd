@@ -1,0 +1,45 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+2.2.1
+Write a function which multiples all numbers by 15 and adds 4.
+```{r}
+multiply_15_add_4 <- function(x){
+  return(x*15+4)
+}
+multiply_15_add_4(1)
+multiply_15_add_4(2)
+multiply_15_add_4(3)
+
+```
+2.2.2
+Write a function that returns “bird”, if the input is “goose”, “duck” or “pigeon”, and returns “not bird” for all other input.
+```{r}
+
+
+test_bird <- function(x){
+  birds <- c("goose", "duck", "pigeon")
+  if (x %in% birds){
+    return("bird")
+}
+  else {
+    "not bird"
+}
+}
+test_bird("goose")
+test_bird("apple")
+test_bird(5)
+```
+2.2.3
+Write a function which multiplies all numbers by 10. If the input isn’t a number, the function should return “Invalid input”.
+```{r}
+function <- (x){
+  if (class(x) == "numeric"){
+    return(x*10)
+  }
+  else
+}
+
+```
+
