@@ -1,17 +1,22 @@
 ---
-title: "R Notebook"
+title: "R programming - Weekend Homework"
 output: html_notebook
 ---
+2.2 if statements and functions
+
 2.2.1
 Write a function which multiples all numbers by 15 and adds 4.
 ```{r}
 multiply_15_add_4 <- function(x){
   return(x*15+4)
 }
+
 multiply_15_add_4(1)
 multiply_15_add_4(2)
 multiply_15_add_4(3)
 
+
+multiply_15_add_4(24)
 ```
 2.2.2
 Write a function that returns “bird”, if the input is “goose”, “duck” or “pigeon”, and returns “not bird” for all other input.
@@ -30,16 +35,185 @@ test_bird <- function(x){
 test_bird("goose")
 test_bird("apple")
 test_bird(5)
+
+
+test_bird("duckling")
+
 ```
 2.2.3
 Write a function which multiplies all numbers by 10. If the input isn’t a number, the function should return “Invalid input”.
 ```{r}
-function <- (x){
+multiply_10 <- function(x){
   if (class(x) == "numeric"){
     return(x*10)
   }
   else
+    return("invalid input")
 }
 
+multiply_10(15)
 ```
+2.3 ifelse(), recode() and case_when()
+2.3.1
+For the vector below, make a new vector which is equal to “Big” every time the element of sizes is greater than 10, and equal to “Small” every time the element of sizes is less than or equal to 10.
+ifelse()
+```{r}
+sizes <- c(13, 15, 10, 8, 22)
+```
+
+```{r}
+sizes_new <- ifelse(sizes > 10, "Big", "Small")
+sizes_new
+```
+recode()
+```{r}
+# less_than_10 <- as.character(sizes > 10)
+# less_than_10 <- ?recode(less_than_10, less_than_10 = "Small")
+# ten_or_more <- as.character(sizes =< 10)
+# ten_or_more <- recode(ten_or_more, ten_or_more = "Big")
+
+new_sizes <- recode(sizes, sizes(< 10) = "Small", sizes (=> 10) = "Big")
+new_sizes
+```
+case_when()
+```{r}
+sizes_new_3 <- case_when(
+  sizes > 10 ~ "Big",
+  sizes <= 10 ~ "Small"
+)
+
+sizes_new_3
+```
+
+2.3.2
+For the vector below convert:
+apple → alpaca
+banana → bonobo
+cherry → chipmunk
+```{r}
+fruit <- c("apple", "apple", "banana", "cherry", "cherry")
+```
+ifelse()
+```{r}
+ifelse(
+  fruit == "apple", "alpaca",
+  ifelse(fruit == "banana", "bonobo",
+         ifelse(fruit == "cherry", "chipmunk",
+                NA)
+         )
+  )
+```
+recode()
+```{r}
+a_sizes <- recode(sizes, sizes$"apple" = "alpaca")
+a_sizes
+```
+case_when(
+```{r}
+conversions <- case_when(
+  fruit == "apple" ~ "alpaca",
+  fruit == "banana" ~ "bonobo",
+  fruit == "cherry" ~ "chipmunk"
+)
+conversions
+```
+2.3.3
+The two vectors below show the ages at marriage of each member of a couple. The first elements of each vector correspond to the first couple, the second elements to the second couple, and so on.
+
+Create a new vector which is equal to:
+
+“Wife older” whenever the wife’s age is highest “Husband older” when the husband’s age is highest “Same age” when they are the same age
+```{r}
+wife_age <- c(29L, 30L, 36L, 31L, 22L)
+husband_age <- c(28L, 35L, 32L, 31L, 29L)
+```
+ifelse()
+```{r}
+ifelse(wife_age < husband_age, "Husband older", ifelse(wife_age > husband_age, "Wife Older", "Same age"))
+```
+recode()
+```{r}
+
+```
+case_when()
+```{r}
+case_when(
+  wife_age  < husband_age  ~ "Husband older",
+  wife_age  > husband_age  ~ "Wife older",
+  wife_age == husband_age  ~ "Same age"
+)
+```
+2.4 Loops
+```{r}
+my_list <- list(
+  4,
+  "apple",
+  10.5,
+  c("is", "an", "apple"),
+  "apple",
+  c("i", "like", "apples"),
+  8
+)
+```
+2.4.1
+Use a for loop to print out every element of my_list which is of type character.
+```{r}
+for("character" in my_list) print(my_list)
+```
+
+2.4.2
+Do the same as above, but this time use a while loop.
+```{r}
+while(my_list == "character")
+```
+
+2.4.3
+Now, do the same again, but if the element has a length() greater than one, paste() all the elements in that vector together into one big character vector.
+```{r}
+
+```
+3 Extension - Puzzles
+3.1
+Write code that prints a multiplication table for numbers up to 12. i.e. there will be 12 rows and 12 columns, and each element should be the row number multiplied by the column number.
+```{r}
+n <- 1
+multiplication_table <- function(x){
+  n
+  
+}
+
+n = n + 1
+
+
+my_matrix <- matrix(, nrow = 12, ncol = 12)
+my_data <- my_matrix[1, ] * my_matrix[, 1]
+my_data
+```
+
+```{r}
+multiplication_table <- outer(1:12, 1:12, "*")
+rownames(multiplication_table) <- paste(1:12)
+multiplication_table
+```
+3.2
+Write a function that takes a vector, and creates a text art histogram, like the one below.
+
+You may want to use the function cat(). This is similar to print(), but prints directly, without vector markers. You can also include newlines "\n" when using cat().
+```{r}
+cat("***", \n "*")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
