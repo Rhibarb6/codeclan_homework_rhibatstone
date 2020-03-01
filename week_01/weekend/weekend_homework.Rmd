@@ -48,10 +48,10 @@ multiply_10 <- function(x){
     return(x*10)
   }
   else
-    return("invalid input")
+    return("Invalid input")
 }
 
-multiply_10(15)
+multiply_10("hello")
 ```
 2.3 ifelse(), recode() and case_when()
 2.3.1
