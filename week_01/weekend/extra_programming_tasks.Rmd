@@ -1,0 +1,17 @@
+---
+title: "Extra Programming Tasks"
+output: html_notebook
+---
+For loops & apply
+Question 1
+
+```{r}
+x <- c(1, 2, 9)
+y <- c(2, 6, 4)
+```
+
+Write a for loop to compute the element-wise product vector, saving your results in a new vector z, z=x×y (e.g. z1=x1×y1,z2=x2×y2,...). Compare this to x * y in R.
+```{r}
+
+```
+

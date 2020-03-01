@@ -67,13 +67,12 @@ sizes_new
 ```
 recode()
 ```{r}
-# less_than_10 <- as.character(sizes > 10)
-# less_than_10 <- ?recode(less_than_10, less_than_10 = "Small")
-# ten_or_more <- as.character(sizes =< 10)
-# ten_or_more <- recode(ten_or_more, ten_or_more = "Big")
 
-new_sizes <- recode(sizes, sizes(< 10) = "Small", sizes (=> 10) = "Big")
-new_sizes
+sizes <- c(13, 15, 10, 8, 22)
+
+new_sizes <- as.factor(sizes <= 10)
+
+recode(new_sizes, "FALSE" = "Small", "TRUE" = "Big")
 ```
 case_when()
 ```{r}
@@ -104,12 +103,24 @@ ifelse(
   )
 ```
 recode()
+apple → alpaca
+banana → bonobo
+cherry → chipmunk
 ```{r}
-a_sizes <- recode(sizes, sizes$"apple" = "alpaca")
-a_sizes
+fruit <- c("apple", "apple", "banana", "cherry", "cherry")
+
+recode(fruit,
+       "apple" = "alpaca", 
+       "banana" = "bonobo", 
+       "cherry" = "chipmunk"
+       )
+
+fruit
 ```
 case_when(
 ```{r}
+fruit <- c("apple", "apple", "banana", "cherry", "cherry")
+
 conversions <- case_when(
   fruit == "apple" ~ "alpaca",
   fruit == "banana" ~ "bonobo",
@@ -133,7 +144,12 @@ ifelse(wife_age < husband_age, "Husband older", ifelse(wife_age > husband_age, "
 ```
 recode()
 ```{r}
+wife_age <- c(29L, 30L, 36L, 31L, 22L)
+husband_age <- c(28L, 35L, 32L, 31L, 29L)
 
+new_sizes <- as.factor(sizes <= 10)
+
+recode(new_sizes, "FALSE" = "Small", "TRUE" = "Big")
 ```
 case_when()
 ```{r}
@@ -175,20 +191,6 @@ Now, do the same again, but if the element has a length() greater than one, past
 3 Extension - Puzzles
 3.1
 Write code that prints a multiplication table for numbers up to 12. i.e. there will be 12 rows and 12 columns, and each element should be the row number multiplied by the column number.
-```{r}
-n <- 1
-multiplication_table <- function(x){
-  n
-  
-}
-
-n = n + 1
-
-
-my_matrix <- matrix(, nrow = 12, ncol = 12)
-my_data <- my_matrix[1, ] * my_matrix[, 1]
-my_data
-```
 
 ```{r}
 multiplication_table <- outer(1:12, 1:12, "*")
@@ -200,7 +202,7 @@ Write a function that takes a vector, and creates a text art histogram, like the
 
 You may want to use the function cat(). This is similar to print(), but prints directly, without vector markers. You can also include newlines "\n" when using cat().
 ```{r}
-cat("***", \n "*")
+
 ```
 
 
