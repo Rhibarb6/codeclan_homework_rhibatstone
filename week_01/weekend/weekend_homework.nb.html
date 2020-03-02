@@ -1749,13 +1749,57 @@ summary {
 
 
 <!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcblxuYGBgIn0= -->
+<pre class="r"><code>library(dplyr)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>Registered S3 method overwritten by 'dplyr':
+  method           from
+  print.rowwise_df     
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>2.2 if statements and functions</p>
 <p>2.2.1 Write a function which multiples all numbers by 15 and adds 4.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubXVsdGlwbHlfMTVfYWRkXzQoMjQpXG5cbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r multiply_15_add_4(24)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfMTVfYWRkXzQgPC0gZnVuY3Rpb24oeCl7XG4gIHgqMTUrNFxufVxuXG5tdWx0aXBseV8xNV9hZGRfNCgxKVxuYGBgIn0= -->
+<pre class="r"><code>multiply_15_add_4 &lt;- function(x){
+  x*15+4
+}
+
+multiply_15_add_4(1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE5XG4ifQ== -->
+<pre><code>[1] 19</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfMTVfYWRkXzQoMilcbmBgYCJ9 -->
+<pre class="r"><code>multiply_15_add_4(2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM0XG4ifQ== -->
+<pre><code>[1] 34</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfMTVfYWRkXzQoMylcbmBgYCJ9 -->
+<pre class="r"><code>multiply_15_add_4(3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQ5XG4ifQ== -->
+<pre><code>[1] 49</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfMTVfYWRkXzQoMjQpXG5gYGAifQ== -->
+<pre class="r"><code>multiply_15_add_4(24)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM2NFxuIn0= -->
 <pre><code>[1] 364</code></pre>
@@ -1765,12 +1809,35 @@ summary {
 <p>2.2.2 Write a function that returns “bird”, if the input is “goose”, “duck” or “pigeon”, and returns “not bird” for all other input.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudGVzdF9iaXJkKFxcZHVja2xpbmdcXClcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r test_bird()</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbnRlc3RfYmlyZCA8LSBmdW5jdGlvbih4KXtcbiAgYmlyZHMgPC0gYyhcImdvb3NlXCIsIFwiZHVja1wiLCBcInBpZ2VvblwiKVxuICBcbiAgaWYgKHggJWluJSBiaXJkcyl7XG4gICAgcmV0dXJuKFwiYmlyZFwiKVxuICB9IGVsc2Uge1xuICAgIFwibm90IGJpcmRcIlxuICB9XG59XG5cbnRlc3RfYmlyZChcImdvb3NlXCIpXG5gYGAifQ== -->
+<pre class="r"><code>
+
+test_bird &lt;- function(x){
+  birds &lt;- c(&quot;goose&quot;, &quot;duck&quot;, &quot;pigeon&quot;)
+  
+  if (x %in% birds){
+    return(&quot;bird&quot;)
+  } else {
+    &quot;not bird&quot;
+  }
+}
+
+test_bird(&quot;goose&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcbm90IGJpcmRcXFxuIn0= -->
-<pre><code>[1] \not bird\</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYmlyZFwiXG4ifQ== -->
+<pre><code>[1] &quot;bird&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9iaXJkKFwiYXBwbGVcIilcbmBgYCJ9 -->
+<pre class="r"><code>test_bird(&quot;apple&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibm90IGJpcmRcIlxuIn0= -->
+<pre><code>[1] &quot;not bird&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdF9iaXJkKDUpXG5gYGAifQ== -->
+<pre class="r"><code>test_bird(5)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibm90IGJpcmRcIlxuIn0= -->
+<pre><code>[1] &quot;not bird&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1796,16 +1863,16 @@ multiply_10(&quot;hello&quot;)</code></pre>
 <p>2.3 ifelse(), recode() and case_when() 2.3.1 For the vector below, make a new vector which is equal to “Big” every time the element of sizes is greater than 10, and equal to “Small” every time the element of sizes is less than or equal to 10. ifelse()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2l6ZXMgPC0gYygxMywgMTUsIDEwLCA4LCAyMilcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r sizes &lt;- c(13, 15, 10, 8, 22)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2l6ZXMgPC0gYygxMywgMTUsIDEwLCA4LCAyMilcbmBgYCJ9 -->
+<pre class="r"><code>sizes &lt;- c(13, 15, 10, 8, 22)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2l6ZXNfbmV3IDwtIGlmZWxzZShzaXplcyA+IDEwLCBcIkJpZ1wiLCBcIlNtYWxsXCIpXG5zaXplc19uZXdcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2l6ZXNfbmV3IDwtIGlmZWxzZShzaXplcyA+IDEwLCBcIkJpZ1wiLCBcIlNtYWxsXCIpXG5cbnNpemVzX25ld1xuYGBgIn0= -->
 <pre class="r"><code>sizes_new &lt;- ifelse(sizes &gt; 10, &quot;Big&quot;, &quot;Small&quot;)
+
 sizes_new</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQmlnXCIgICBcIkJpZ1wiICAgXCJTbWFsbFwiIFwiU21hbGxcIiBcIkJpZ1wiICBcbiJ9 -->
@@ -1816,37 +1883,42 @@ sizes_new</code></pre>
 <p>recode()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hlY2sgPC0gYygyLCAyKVxuc3VtKGNoZWNrKVxuXG5gYGAifQ== -->
-<pre class="r"><code>check &lt;- c(2, 2)
-sum(check)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5zaXplcyA8LSBjKDEzLCAxNSwgMTAsIDgsIDIyKVxuXG5uZXdfc2l6ZXMgPC0gYXMuZmFjdG9yKHNpemVzIDw9IDEwKVxuXG5yZWNvZGUobmV3X3NpemVzLCBcIkZBTFNFXCIgPSBcIlNtYWxsXCIsIFwiVFJVRVwiID0gXCJCaWdcIilcbmBgYCJ9 -->
+<pre class="r"><code>
+sizes &lt;- c(13, 15, 10, 8, 22)
+
+new_sizes &lt;- as.factor(sizes &lt;= 10)
+
+recode(new_sizes, &quot;FALSE&quot; = &quot;Small&quot;, &quot;TRUE&quot; = &quot;Big&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDRcbiJ9 -->
-<pre><code>[1] 4</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcmVjb2RlKG5ld19zaXplcywgYEZBTFNFYCA9IFwiU21hbGxcIiwgYFRSVUVgID0gXCJCaWdcIikgOiBcbiAgY291bGQgbm90IGZpbmQgZnVuY3Rpb24gXCJyZWNvZGVcIlxuIn0= -->
+<pre><code>Error in recode(new_sizes, `FALSE` = &quot;Small&quot;, `TRUE` = &quot;Big&quot;) : 
+  could not find function &quot;recode&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>case_when()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2l6ZXNfbmV3XzMgPC0gY2FzZV93aGVuKFxuICBzaXplcyA+IDEwIH4gXCJCaWdcIixcbiAgc2l6ZXMgPD0gMTAgfiBcIlNtYWxsXCJcbilcblxuc2l6ZXNfbmV3XzNcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2l6ZXNfbmV3XzMgPC0gY2FzZV93aGVuKFxuICBzaXplcyA+IDEwIH4gXCJCaWdcIixcbiAgc2l6ZXMgPD0gMTAgfiBcIlNtYWxsXCJcbilcblxuYGBgIn0= -->
 <pre class="r"><code>sizes_new_3 &lt;- case_when(
   sizes &gt; 10 ~ &quot;Big&quot;,
   sizes &lt;= 10 ~ &quot;Small&quot;
 )
-
-sizes_new_3</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQmlnXCIgICBcIkJpZ1wiICAgXCJTbWFsbFwiIFwiU21hbGxcIiBcIkJpZ1wiICBcbiJ9 -->
-<pre><code>[1] &quot;Big&quot;   &quot;Big&quot;   &quot;Small&quot; &quot;Small&quot; &quot;Big&quot;  </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gY2FzZV93aGVuKHNpemVzID4gMTAgfiBcIkJpZ1wiLCBzaXplcyA8PSAxMCB+IFwiU21hbGxcIikgOiBcbiAgY291bGQgbm90IGZpbmQgZnVuY3Rpb24gXCJjYXNlX3doZW5cIlxuIn0= -->
+<pre><code>Error in case_when(sizes &gt; 10 ~ &quot;Big&quot;, sizes &lt;= 10 ~ &quot;Small&quot;) : 
+  could not find function &quot;case_when&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>2.3.2 For the vector below convert: apple → alpaca banana → bonobo cherry → chipmunk</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZnJ1aXQgPC0gYyhcXGFwcGxlXFwsIFxcYXBwbGVcXCwgXFxiYW5hbmFcXCwgXFxjaGVycnlcXCwgXFxjaGVycnlcXCwgXFx0d29cXClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r fruit &lt;- c(, , , , , )</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuZnJ1aXQgPC0gYyhcXGFwcGxlXFwsIFxcYXBwbGVcXCwgXFxiYW5hbmFcXCwgXFxjaGVycnlcXCwgXFxjaGVycnlcXCwgXFx0d29cXClcbmBgYFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r</p>
+<pre class="r"><code>fruit &lt;- c(\apple\, \apple\, \banana\, \cherry\, \cherry\, \two\)</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1854,8 +1926,15 @@ sizes_new_3</code></pre>
 <p>ifelse()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaWZlbHNlKFxuICBmcnVpdCA9PSBcXGFwcGxlXFwsIFxcYWxwYWNhXFwsXG4gIGlmZWxzZShmcnVpdCA9PSBcXGJhbmFuYVxcLCBcXGJvbm9ib1xcLFxuICAgICAgICAgaWZlbHNlKGZydWl0ID09IFxcY2hlcnJ5XFwsIFxcY2hpcG11bmtcXCxcbiAgICAgICAgICAgICAgICBOQSlcbiAgICAgICAgIClcbiAgKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r ifelse( fruit == , , ifelse(fruit == , , ifelse(fruit == , , NA) ) )</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuaWZlbHNlKFxuICBmcnVpdCA9PSBcXGFwcGxlXFwsIFxcYWxwYWNhXFwsXG4gIGlmZWxzZShmcnVpdCA9PSBcXGJhbmFuYVxcLCBcXGJvbm9ib1xcLFxuICAgICAgICAgaWZlbHNlKGZydWl0ID09IFxcY2hlcnJ5XFwsIFxcY2hpcG11bmtcXCxcbiAgICAgICAgICAgICAgICBOQSlcbiAgICAgICAgIClcbiAgKVxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r</p>
+<pre class="r"><code>ifelse(
+  fruit == \apple\, \alpaca\,
+  ifelse(fruit == \banana\, \bonobo\,
+         ifelse(fruit == \cherry\, \chipmunk\,
+                NA)
+         )
+  )</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcYWxwYWNhXFwgICBcXGFscGFjYVxcICAgXFxib25vYm9cXCAgIFxcY2hpcG11bmtcXCBcXGNoaXBtdW5rXFxcbiJ9 -->
@@ -1866,30 +1945,36 @@ sizes_new_3</code></pre>
 <p>recode() apple → alpaca banana → bonobo cherry → chipmunk</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJ1aXQgPC0gYyhcImFwcGxlXCIsIFwiYXBwbGVcIiwgXCJiYW5hbmFcIiwgXCJjaGVycnlcIiwgXCJjaGVycnlcIilcbnJlY29kZShmcnVpdCwgXCJhcHBsZVwiID0gXCJhbHBhY2FcIiwgXCJiYW5hbmFcIiA9IFwiYm9ub2JvXCIsIFwiY2hlcnJ5XCIgPSBcImNoaXBtdW5rXCIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJ1aXQgPC0gYyhcImFwcGxlXCIsIFwiYXBwbGVcIiwgXCJiYW5hbmFcIiwgXCJjaGVycnlcIiwgXCJjaGVycnlcIilcblxucmVjb2RlKGZydWl0LFxuICAgICAgIFwiYXBwbGVcIiA9IFwiYWxwYWNhXCIsIFxuICAgICAgIFwiYmFuYW5hXCIgPSBcImJvbm9ib1wiLCBcbiAgICAgICBcImNoZXJyeVwiID0gXCJjaGlwbXVua1wiXG4gICAgICAgKVxuYGBgIn0= -->
 <pre class="r"><code>fruit &lt;- c(&quot;apple&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;cherry&quot;)
-recode(fruit, &quot;apple&quot; = &quot;alpaca&quot;, &quot;banana&quot; = &quot;bonobo&quot;, &quot;cherry&quot; = &quot;chipmunk&quot;)</code></pre>
+
+recode(fruit,
+       &quot;apple&quot; = &quot;alpaca&quot;, 
+       &quot;banana&quot; = &quot;bonobo&quot;, 
+       &quot;cherry&quot; = &quot;chipmunk&quot;
+       )</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYWxwYWNhXCIgICBcImFscGFjYVwiICAgXCJib25vYm9cIiAgIFwiY2hpcG11bmtcIiBcImNoaXBtdW5rXCJcbiJ9 -->
-<pre><code>[1] &quot;alpaca&quot;   &quot;alpaca&quot;   &quot;bonobo&quot;   &quot;chipmunk&quot; &quot;chipmunk&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJ1aXRcbmBgYCJ9 -->
-<pre class="r"><code>fruit</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYXBwbGVcIiAgXCJhcHBsZVwiICBcImJhbmFuYVwiIFwiY2hlcnJ5XCIgXCJjaGVycnlcIlxuIn0= -->
-<pre><code>[1] &quot;apple&quot;  &quot;apple&quot;  &quot;banana&quot; &quot;cherry&quot; &quot;cherry&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcmVjb2RlKGZydWl0LCBhcHBsZSA9IFwiYWxwYWNhXCIsIGJhbmFuYSA9IFwiYm9ub2JvXCIsIGNoZXJyeSA9IFwiY2hpcG11bmtcIikgOiBcbiAgY291bGQgbm90IGZpbmQgZnVuY3Rpb24gXCJyZWNvZGVcIlxuIn0= -->
+<pre><code>Error in recode(fruit, apple = &quot;alpaca&quot;, banana = &quot;bonobo&quot;, cherry = &quot;chipmunk&quot;) : 
+  could not find function &quot;recode&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>case_when(</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY29udmVyc2lvbnNcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r conversions</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJ1aXQgPC0gYyhcImFwcGxlXCIsIFwiYXBwbGVcIiwgXCJiYW5hbmFcIiwgXCJjaGVycnlcIiwgXCJjaGVycnlcIilcblxuY29udmVyc2lvbnMgPC0gY2FzZV93aGVuKFxuICBmcnVpdCA9PSBcImFwcGxlXCIgfiBcImFscGFjYVwiLFxuICBmcnVpdCA9PSBcImJhbmFuYVwiIH4gXCJib25vYm9cIixcbiAgZnJ1aXQgPT0gXCJjaGVycnlcIiB+IFwiY2hpcG11bmtcIlxuKVxuY29udmVyc2lvbnNcbmBgYCJ9 -->
+<pre class="r"><code>fruit &lt;- c(&quot;apple&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;cherry&quot;)
+
+conversions &lt;- case_when(
+  fruit == &quot;apple&quot; ~ &quot;alpaca&quot;,
+  fruit == &quot;banana&quot; ~ &quot;bonobo&quot;,
+  fruit == &quot;cherry&quot; ~ &quot;chipmunk&quot;
+)
+conversions</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcYWxwYWNhXFwgICBcXGFscGFjYVxcICAgXFxib25vYm9cXCAgIFxcY2hpcG11bmtcXCBcXGNoaXBtdW5rXFxcbiJ9 -->
-<pre><code>[1] \alpaca\   \alpaca\   \bonobo\   \chipmunk\ \chipmunk\</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYWxwYWNhXCIgICBcImFscGFjYVwiICAgXCJib25vYm9cIiAgIFwiY2hpcG11bmtcIiBcImNoaXBtdW5rXCJcbiJ9 -->
+<pre><code>[1] &quot;alpaca&quot;   &quot;alpaca&quot;   &quot;bonobo&quot;   &quot;chipmunk&quot; &quot;chipmunk&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1898,78 +1983,93 @@ recode(fruit, &quot;apple&quot; = &quot;alpaca&quot;, &quot;banana&quot; = &quot
 <p>“Wife older” whenever the wife’s age is highest “Husband older” when the husband’s age is highest “Same age” when they are the same age</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud2lmZV9hZ2UgPC0gYygyOUwsIDMwTCwgMzZMLCAzMUwsIDIyTClcbmh1c2JhbmRfYWdlIDwtIGMoMjhMLCAzNUwsIDMyTCwgMzFMLCAyOUwpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r wife_age &lt;- c(29L, 30L, 36L, 31L, 22L) husband_age &lt;- c(28L, 35L, 32L, 31L, 29L)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2lmZV9hZ2UgPC0gYygyOUwsIDMwTCwgMzZMLCAzMUwsIDIyTClcbmh1c2JhbmRfYWdlIDwtIGMoMjhMLCAzNUwsIDMyTCwgMzFMLCAyOUwpXG5gYGAifQ== -->
+<pre class="r"><code>wife_age &lt;- c(29L, 30L, 36L, 31L, 22L)
+husband_age &lt;- c(28L, 35L, 32L, 31L, 29L)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>ifelse()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaWZlbHNlKHdpZmVfYWdlIDwgaHVzYmFuZF9hZ2UsIFxcSHVzYmFuZCBvbGRlclxcLCBpZmVsc2Uod2lmZV9hZ2UgPiBodXNiYW5kX2FnZSwgXFxXaWZlIE9sZGVyXFwsIFxcU2FtZSBhZ2VcXCkpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r ifelse(wife_age &lt; husband_age, older, ifelse(wife_age &gt; husband_age, Older, age))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaWZlbHNlKHdpZmVfYWdlIDwgaHVzYmFuZF9hZ2UsIFwiSHVzYmFuZCBvbGRlclwiLCBpZmVsc2Uod2lmZV9hZ2UgPiBodXNiYW5kX2FnZSwgXCJXaWZlIE9sZGVyXCIsIFwiU2FtZSBhZ2VcIikpXG5gYGAifQ== -->
+<pre class="r"><code>ifelse(wife_age &lt; husband_age, &quot;Husband older&quot;, ifelse(wife_age &gt; husband_age, &quot;Wife Older&quot;, &quot;Same age&quot;))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcV2lmZSBPbGRlclxcICAgIFxcSHVzYmFuZCBvbGRlclxcIFxcV2lmZSBPbGRlclxcICAgXG5bNF0gXFxTYW1lIGFnZVxcICAgICAgXFxIdXNiYW5kIG9sZGVyXFxcbiJ9 -->
-<pre><code>[1] \Wife Older\    \Husband older\ \Wife Older\   
-[4] \Same age\      \Husband older\</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiV2lmZSBPbGRlclwiICAgIFwiSHVzYmFuZCBvbGRlclwiIFwiV2lmZSBPbGRlclwiICAgIFwiU2FtZSBhZ2VcIiAgICAgXG5bNV0gXCJIdXNiYW5kIG9sZGVyXCJcbiJ9 -->
+<pre><code>[1] &quot;Wife Older&quot;    &quot;Husband older&quot; &quot;Wife Older&quot;    &quot;Same age&quot;     
+[5] &quot;Husband older&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>recode()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2lmZV9hZ2UgPC0gYygyOUwsIDMwTCwgMzZMLCAzMUwsIDIyTClcbmh1c2JhbmRfYWdlIDwtIGMoMjhMLCAzNUwsIDMyTCwgMzFMLCAyOUwpXG5cbm5ld19zaXplcyA8LSBhcy5mYWN0b3Ioc2l6ZXMgPD0gMTApXG5cbnJlY29kZShuZXdfc2l6ZXMsIFwiRkFMU0VcIiA9IFwiU21hbGxcIiwgXCJUUlVFXCIgPSBcIkJpZ1wiKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2lmZV9hZ2UgPC0gYygyOUwsIDMwTCwgMzZMLCAzMUwsIDIyTClcbmh1c2JhbmRfYWdlIDwtIGMoMjhMLCAzNUwsIDMyTCwgMzFMLCAyOUwpXG5cbiMgbmV3X3NpemVzIDwtIGFzLmZhY3RvcihzaXplcyA8PSAxMClcblxuIyByZWNvZGUobmV3X3NpemVzLCBcIkZBTFNFXCIgPSBcIlNtYWxsXCIsIFwiVFJVRVwiID0gXCJCaWdcIilcbmBgYCJ9 -->
 <pre class="r"><code>wife_age &lt;- c(29L, 30L, 36L, 31L, 22L)
 husband_age &lt;- c(28L, 35L, 32L, 31L, 29L)
 
-new_sizes &lt;- as.factor(sizes &lt;= 10)
+# new_sizes &lt;- as.factor(sizes &lt;= 10)
 
-recode(new_sizes, &quot;FALSE&quot; = &quot;Small&quot;, &quot;TRUE&quot; = &quot;Big&quot;)</code></pre>
+# recode(new_sizes, &quot;FALSE&quot; = &quot;Small&quot;, &quot;TRUE&quot; = &quot;Big&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>case_when()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY2FzZV93aGVuKFxuICB3aWZlX2FnZSAgPCBodXNiYW5kX2FnZSAgfiBcXEh1c2JhbmQgb2xkZXJcXCxcbiAgd2lmZV9hZ2UgID4gaHVzYmFuZF9hZ2UgIH4gXFxXaWZlIG9sZGVyXFwsXG4gIHdpZmVfYWdlID09IGh1c2JhbmRfYWdlICB+IFxcU2FtZSBhZ2VcXFxuKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r case_when( wife_age &lt; husband_age ~ older, wife_age &gt; husband_age ~ older, wife_age == husband_age ~ age<br />
-)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FzZV93aGVuKFxuICB3aWZlX2FnZSAgPCBodXNiYW5kX2FnZSAgfiBcIkh1c2JhbmQgb2xkZXJcIixcbiAgd2lmZV9hZ2UgID4gaHVzYmFuZF9hZ2UgIH4gXCJXaWZlIG9sZGVyXCIsXG4gIHdpZmVfYWdlID09IGh1c2JhbmRfYWdlICB+IFwiU2FtZSBhZ2VcIlxuKVxuYGBgIn0= -->
+<pre class="r"><code>case_when(
+  wife_age  &lt; husband_age  ~ &quot;Husband older&quot;,
+  wife_age  &gt; husband_age  ~ &quot;Wife older&quot;,
+  wife_age == husband_age  ~ &quot;Same age&quot;
+)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcV2lmZSBvbGRlclxcICAgIFxcSHVzYmFuZCBvbGRlclxcIFxcV2lmZSBvbGRlclxcICAgXG5bNF0gXFxTYW1lIGFnZVxcICAgICAgXFxIdXNiYW5kIG9sZGVyXFxcbiJ9 -->
-<pre><code>[1] \Wife older\    \Husband older\ \Wife older\   
-[4] \Same age\      \Husband older\</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiV2lmZSBvbGRlclwiICAgIFwiSHVzYmFuZCBvbGRlclwiIFwiV2lmZSBvbGRlclwiICAgIFwiU2FtZSBhZ2VcIiAgICAgXG5bNV0gXCJIdXNiYW5kIG9sZGVyXCJcbiJ9 -->
+<pre><code>[1] &quot;Wife older&quot;    &quot;Husband older&quot; &quot;Wife older&quot;    &quot;Same age&quot;     
+[5] &quot;Husband older&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>2.4 Loops</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubXlfbGlzdCA8LSBsaXN0KFxuICA0LFxuICBcXGFwcGxlXFwsXG4gIDEwLjUsXG4gIGMoXFxpc1xcLCBcXGFuXFwsIFxcYXBwbGVcXCksXG4gIFxcYXBwbGVcXCxcbiAgYyhcXGlcXCwgXFxsaWtlXFwsIFxcYXBwbGVzXFwpLFxuICA4XG4pXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r my_list &lt;- list( 4, , 10.5, c(, , ), , c(, , ), 8 )</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfbGlzdCA8LSBsaXN0KFxuICA0LFxuICBcImFwcGxlXCIsXG4gIDEwLjUsXG4gIGMoXCJpc1wiLCBcImFuXCIsIFwiYXBwbGVcIiksXG4gIFwiYXBwbGVcIixcbiAgYyhcImlcIiwgXCJsaWtlXCIsIFwiYXBwbGVzXCIpLFxuICA4XG4pXG5gYGAifQ== -->
+<pre class="r"><code>my_list &lt;- list(
+  4,
+  &quot;apple&quot;,
+  10.5,
+  c(&quot;is&quot;, &quot;an&quot;, &quot;apple&quot;),
+  &quot;apple&quot;,
+  c(&quot;i&quot;, &quot;like&quot;, &quot;apples&quot;),
+  8
+)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>2.4.1 Use a for loop to print out every element of my_list which is of type character.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZm9yKFxcY2hhcmFjdGVyXFwgaW4gbXlfbGlzdCkgcHJpbnQobXlfbGlzdClcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r for( in my_list) print(my_list)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yKGVsZW0gaW4gbXlfbGlzdCl7XG4gIGlmKGlzLmNoYXJhY3RlcihlbGVtKSl7XG4gICAgcHJpbnQoZWxlbSlcbiAgfVxufSBcbmBgYCJ9 -->
+<pre class="r"><code>for(elem in my_list){
+  if(is.character(elem)){
+    print(elem)
+  }
+} </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgc3RyaW5nIGNvbnN0YW50IGluIFxcZm9yKFxcY2hhcmFjdGVyXFxcXFxuIn0= -->
-<pre><code>Error: unexpected string constant in \for(\character\\</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYXBwbGVcIlxuWzFdIFwiaXNcIiAgICBcImFuXCIgICAgXCJhcHBsZVwiXG5bMV0gXCJhcHBsZVwiXG5bMV0gXCJpXCIgICAgICBcImxpa2VcIiAgIFwiYXBwbGVzXCJcbiJ9 -->
+<pre><code>[1] &quot;apple&quot;
+[1] &quot;is&quot;    &quot;an&quot;    &quot;apple&quot;
+[1] &quot;apple&quot;
+[1] &quot;i&quot;      &quot;like&quot;   &quot;apples&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>2.4.2 Do the same as above, but this time use a while loop.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud2hpbGUobXlfbGlzdCA9PSBcXGNoYXJhY3RlclxcKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r while(my_list == )</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxud2hpbGUobXlfbGlzdCA9PSBcXGNoYXJhY3RlclxcKVxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r</p>
+<pre class="r"><code>while(my_list == \character\)</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1982,8 +2082,11 @@ recode(new_sizes, &quot;FALSE&quot; = &quot;Small&quot;, &quot;TRUE&quot; = &quo
 <p>3 Extension - Puzzles 3.1 Write code that prints a multiplication table for numbers up to 12. i.e. there will be 12 rows and 12 columns, and each element should be the row number multiplied by the column number.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubXVsdGlwbGljYXRpb25fdGFibGUgPC0gb3V0ZXIoMToxMiwgMToxMiwgXFwqXFwpXG5yb3duYW1lcyhtdWx0aXBsaWNhdGlvbl90YWJsZSkgPC0gcGFzdGUoMToxMilcbm11bHRpcGxpY2F0aW9uX3RhYmxlXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r multiplication_table &lt;- outer(1:12, 1:12, *) rownames(multiplication_table) &lt;- paste(1:12) multiplication_table</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxubXVsdGlwbGljYXRpb25fdGFibGUgPC0gb3V0ZXIoMToxMiwgMToxMiwgXFwqXFwpXG5yb3duYW1lcyhtdWx0aXBsaWNhdGlvbl90YWJsZSkgPC0gcGFzdGUoMToxMilcbm11bHRpcGxpY2F0aW9uX3RhYmxlXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r</p>
+<pre class="r"><code>multiplication_table &lt;- outer(1:12, 1:12, \*\)
+rownames(multiplication_table) &lt;- paste(1:12)
+multiplication_table</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiICAgWywxXSBbLDJdIFssM10gWyw0XSBbLDVdIFssNl0gWyw3XSBbLDhdIFssOV0gWywxMF0gWywxMV0gWywxMl1cbjEgICAgIDEgICAgMiAgICAzICAgIDQgICAgNSAgICA2ICAgIDcgICAgOCAgICA5ICAgIDEwICAgIDExICAgIDEyXG4yICAgICAyICAgIDQgICAgNiAgICA4ICAgMTAgICAxMiAgIDE0ICAgMTYgICAxOCAgICAyMCAgICAyMiAgICAyNFxuMyAgICAgMyAgICA2ICAgIDkgICAxMiAgIDE1ICAgMTggICAyMSAgIDI0ICAgMjcgICAgMzAgICAgMzMgICAgMzZcbjQgICAgIDQgICAgOCAgIDEyICAgMTYgICAyMCAgIDI0ICAgMjggICAzMiAgIDM2ICAgIDQwICAgIDQ0ICAgIDQ4XG41ICAgICA1ICAgMTAgICAxNSAgIDIwICAgMjUgICAzMCAgIDM1ICAgNDAgICA0NSAgICA1MCAgICA1NSAgICA2MFxuNiAgICAgNiAgIDEyICAgMTggICAyNCAgIDMwICAgMzYgICA0MiAgIDQ4ICAgNTQgICAgNjAgICAgNjYgICAgNzJcbjcgICAgIDcgICAxNCAgIDIxICAgMjggICAzNSAgIDQyICAgNDkgICA1NiAgIDYzICAgIDcwICAgIDc3ICAgIDg0XG44ICAgICA4ICAgMTYgICAyNCAgIDMyICAgNDAgICA0OCAgIDU2ICAgNjQgICA3MiAgICA4MCAgICA4OCAgICA5NlxuOSAgICAgOSAgIDE4ICAgMjcgICAzNiAgIDQ1ICAgNTQgICA2MyAgIDcyICAgODEgICAgOTAgICAgOTkgICAxMDhcbjEwICAgMTAgICAyMCAgIDMwICAgNDAgICA1MCAgIDYwICAgNzAgICA4MCAgIDkwICAgMTAwICAgMTEwICAgMTIwXG4xMSAgIDExICAgMjIgICAzMyAgIDQ0ICAgNTUgICA2NiAgIDc3ICAgODggICA5OSAgIDExMCAgIDEyMSAgIDEzMlxuMTIgICAxMiAgIDI0ICAgMzYgICA0OCAgIDYwICAgNzIgICA4NCAgIDk2ICAxMDggICAxMjAgICAxMzIgICAxNDRcbiJ9 -->
@@ -2011,7 +2114,7 @@ recode(new_sizes, &quot;FALSE&quot; = &quot;Small&quot;, &quot;TRUE&quot; = &quo
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBwcm9ncmFtbWluZyAtIFdlZWtlbmQgSG9tZXdvcmsiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KMi4yIGlmIHN0YXRlbWVudHMgYW5kIGZ1bmN0aW9ucwoKMi4yLjEKV3JpdGUgYSBmdW5jdGlvbiB3aGljaCBtdWx0aXBsZXMgYWxsIG51bWJlcnMgYnkgMTUgYW5kIGFkZHMgNC4KYGBge3J9Cm11bHRpcGx5XzE1X2FkZF80IDwtIGZ1bmN0aW9uKHgpewogIHJldHVybih4KjE1KzQpCn0KCm11bHRpcGx5XzE1X2FkZF80KDEpCm11bHRpcGx5XzE1X2FkZF80KDIpCm11bHRpcGx5XzE1X2FkZF80KDMpCgoKbXVsdGlwbHlfMTVfYWRkXzQoMjQpCmBgYAoyLjIuMgpXcml0ZSBhIGZ1bmN0aW9uIHRoYXQgcmV0dXJucyDigJxiaXJk4oCdLCBpZiB0aGUgaW5wdXQgaXMg4oCcZ29vc2XigJ0sIOKAnGR1Y2vigJ0gb3Ig4oCccGlnZW9u4oCdLCBhbmQgcmV0dXJucyDigJxub3QgYmlyZOKAnSBmb3IgYWxsIG90aGVyIGlucHV0LgpgYGB7cn0KCgp0ZXN0X2JpcmQgPC0gZnVuY3Rpb24oeCl7CiAgYmlyZHMgPC0gYygiZ29vc2UiLCAiZHVjayIsICJwaWdlb24iKQogIGlmICh4ICVpbiUgYmlyZHMpewogICAgcmV0dXJuKCJiaXJkIikKfQogIGVsc2UgewogICAgIm5vdCBiaXJkIgp9Cn0KdGVzdF9iaXJkKCJnb29zZSIpCnRlc3RfYmlyZCgiYXBwbGUiKQp0ZXN0X2JpcmQoNSkKCgp0ZXN0X2JpcmQoImR1Y2tsaW5nIikKCmBgYAoyLjIuMwpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxpZXMgYWxsIG51bWJlcnMgYnkgMTAuIElmIHRoZSBpbnB1dCBpc27igJl0IGEgbnVtYmVyLCB0aGUgZnVuY3Rpb24gc2hvdWxkIHJldHVybiDigJxJbnZhbGlkIGlucHV04oCdLgpgYGB7cn0KbXVsdGlwbHlfMTAgPC0gZnVuY3Rpb24oeCl7CiAgaWYgKGNsYXNzKHgpID09ICJudW1lcmljIil7CiAgICByZXR1cm4oeCoxMCkKICB9CiAgZWxzZQogICAgcmV0dXJuKCJJbnZhbGlkIGlucHV0IikKfQoKbXVsdGlwbHlfMTAoImhlbGxvIikKYGBgCjIuMyBpZmVsc2UoKSwgcmVjb2RlKCkgYW5kIGNhc2Vfd2hlbigpCjIuMy4xCkZvciB0aGUgdmVjdG9yIGJlbG93LCBtYWtlIGEgbmV3IHZlY3RvciB3aGljaCBpcyBlcXVhbCB0byDigJxCaWfigJ0gZXZlcnkgdGltZSB0aGUgZWxlbWVudCBvZiBzaXplcyBpcyBncmVhdGVyIHRoYW4gMTAsIGFuZCBlcXVhbCB0byDigJxTbWFsbOKAnSBldmVyeSB0aW1lIHRoZSBlbGVtZW50IG9mIHNpemVzIGlzIGxlc3MgdGhhbiBvciBlcXVhbCB0byAxMC4KaWZlbHNlKCkKYGBge3J9CnNpemVzIDwtIGMoMTMsIDE1LCAxMCwgOCwgMjIpCmBgYAoKYGBge3J9CnNpemVzX25ldyA8LSBpZmVsc2Uoc2l6ZXMgPiAxMCwgIkJpZyIsICJTbWFsbCIpCnNpemVzX25ldwpgYGAKcmVjb2RlKCkKYGBge3J9CgpzaXplcyA8LSBjKDEzLCAxNSwgMTAsIDgsIDIyKQoKbmV3X3NpemVzIDwtIGFzLmZhY3RvcihzaXplcyA8PSAxMCkKCnJlY29kZShuZXdfc2l6ZXMsICJGQUxTRSIgPSAiU21hbGwiLCAiVFJVRSIgPSAiQmlnIikKYGBgCmNhc2Vfd2hlbigpCmBgYHtyfQpzaXplc19uZXdfMyA8LSBjYXNlX3doZW4oCiAgc2l6ZXMgPiAxMCB+ICJCaWciLAogIHNpemVzIDw9IDEwIH4gIlNtYWxsIgopCgpzaXplc19uZXdfMwpgYGAKCjIuMy4yCkZvciB0aGUgdmVjdG9yIGJlbG93IGNvbnZlcnQ6CmFwcGxlIOKGkiBhbHBhY2EKYmFuYW5hIOKGkiBib25vYm8KY2hlcnJ5IOKGkiBjaGlwbXVuawpgYGB7cn0KZnJ1aXQgPC0gYygiYXBwbGUiLCAiYXBwbGUiLCAiYmFuYW5hIiwgImNoZXJyeSIsICJjaGVycnkiKQpgYGAKaWZlbHNlKCkKYGBge3J9CmlmZWxzZSgKICBmcnVpdCA9PSAiYXBwbGUiLCAiYWxwYWNhIiwKICBpZmVsc2UoZnJ1aXQgPT0gImJhbmFuYSIsICJib25vYm8iLAogICAgICAgICBpZmVsc2UoZnJ1aXQgPT0gImNoZXJyeSIsICJjaGlwbXVuayIsCiAgICAgICAgICAgICAgICBOQSkKICAgICAgICAgKQogICkKYGBgCnJlY29kZSgpCmFwcGxlIOKGkiBhbHBhY2EKYmFuYW5hIOKGkiBib25vYm8KY2hlcnJ5IOKGkiBjaGlwbXVuawpgYGB7cn0KZnJ1aXQgPC0gYygiYXBwbGUiLCAiYXBwbGUiLCAiYmFuYW5hIiwgImNoZXJyeSIsICJjaGVycnkiKQoKcmVjb2RlKGZydWl0LAogICAgICAgImFwcGxlIiA9ICJhbHBhY2EiLCAKICAgICAgICJiYW5hbmEiID0gImJvbm9ibyIsIAogICAgICAgImNoZXJyeSIgPSAiY2hpcG11bmsiCiAgICAgICApCgpmcnVpdApgYGAKY2FzZV93aGVuKApgYGB7cn0KZnJ1aXQgPC0gYygiYXBwbGUiLCAiYXBwbGUiLCAiYmFuYW5hIiwgImNoZXJyeSIsICJjaGVycnkiKQoKY29udmVyc2lvbnMgPC0gY2FzZV93aGVuKAogIGZydWl0ID09ICJhcHBsZSIgfiAiYWxwYWNhIiwKICBmcnVpdCA9PSAiYmFuYW5hIiB+ICJib25vYm8iLAogIGZydWl0ID09ICJjaGVycnkiIH4gImNoaXBtdW5rIgopCmNvbnZlcnNpb25zCmBgYAoyLjMuMwpUaGUgdHdvIHZlY3RvcnMgYmVsb3cgc2hvdyB0aGUgYWdlcyBhdCBtYXJyaWFnZSBvZiBlYWNoIG1lbWJlciBvZiBhIGNvdXBsZS4gVGhlIGZpcnN0IGVsZW1lbnRzIG9mIGVhY2ggdmVjdG9yIGNvcnJlc3BvbmQgdG8gdGhlIGZpcnN0IGNvdXBsZSwgdGhlIHNlY29uZCBlbGVtZW50cyB0byB0aGUgc2Vjb25kIGNvdXBsZSwgYW5kIHNvIG9uLgoKQ3JlYXRlIGEgbmV3IHZlY3RvciB3aGljaCBpcyBlcXVhbCB0bzoKCuKAnFdpZmUgb2xkZXLigJ0gd2hlbmV2ZXIgdGhlIHdpZmXigJlzIGFnZSBpcyBoaWdoZXN0IOKAnEh1c2JhbmQgb2xkZXLigJ0gd2hlbiB0aGUgaHVzYmFuZOKAmXMgYWdlIGlzIGhpZ2hlc3Qg4oCcU2FtZSBhZ2XigJ0gd2hlbiB0aGV5IGFyZSB0aGUgc2FtZSBhZ2UKYGBge3J9CndpZmVfYWdlIDwtIGMoMjlMLCAzMEwsIDM2TCwgMzFMLCAyMkwpCmh1c2JhbmRfYWdlIDwtIGMoMjhMLCAzNUwsIDMyTCwgMzFMLCAyOUwpCmBgYAppZmVsc2UoKQpgYGB7cn0KaWZlbHNlKHdpZmVfYWdlIDwgaHVzYmFuZF9hZ2UsICJIdXNiYW5kIG9sZGVyIiwgaWZlbHNlKHdpZmVfYWdlID4gaHVzYmFuZF9hZ2UsICJXaWZlIE9sZGVyIiwgIlNhbWUgYWdlIikpCmBgYApyZWNvZGUoKQpgYGB7cn0Kd2lmZV9hZ2UgPC0gYygyOUwsIDMwTCwgMzZMLCAzMUwsIDIyTCkKaHVzYmFuZF9hZ2UgPC0gYygyOEwsIDM1TCwgMzJMLCAzMUwsIDI5TCkKCm5ld19zaXplcyA8LSBhcy5mYWN0b3Ioc2l6ZXMgPD0gMTApCgpyZWNvZGUobmV3X3NpemVzLCAiRkFMU0UiID0gIlNtYWxsIiwgIlRSVUUiID0gIkJpZyIpCmBgYApjYXNlX3doZW4oKQpgYGB7cn0KY2FzZV93aGVuKAogIHdpZmVfYWdlICA8IGh1c2JhbmRfYWdlICB+ICJIdXNiYW5kIG9sZGVyIiwKICB3aWZlX2FnZSAgPiBodXNiYW5kX2FnZSAgfiAiV2lmZSBvbGRlciIsCiAgd2lmZV9hZ2UgPT0gaHVzYmFuZF9hZ2UgIH4gIlNhbWUgYWdlIgopCmBgYAoyLjQgTG9vcHMKYGBge3J9Cm15X2xpc3QgPC0gbGlzdCgKICA0LAogICJhcHBsZSIsCiAgMTAuNSwKICBjKCJpcyIsICJhbiIsICJhcHBsZSIpLAogICJhcHBsZSIsCiAgYygiaSIsICJsaWtlIiwgImFwcGxlcyIpLAogIDgKKQpgYGAKMi40LjEKVXNlIGEgZm9yIGxvb3AgdG8gcHJpbnQgb3V0IGV2ZXJ5IGVsZW1lbnQgb2YgbXlfbGlzdCB3aGljaCBpcyBvZiB0eXBlIGNoYXJhY3Rlci4KYGBge3J9CmZvcigiY2hhcmFjdGVyIiBpbiBteV9saXN0KSBwcmludChteV9saXN0KQpgYGAKCjIuNC4yCkRvIHRoZSBzYW1lIGFzIGFib3ZlLCBidXQgdGhpcyB0aW1lIHVzZSBhIHdoaWxlIGxvb3AuCmBgYHtyfQp3aGlsZShteV9saXN0ID09ICJjaGFyYWN0ZXIiKQpgYGAKCjIuNC4zCk5vdywgZG8gdGhlIHNhbWUgYWdhaW4sIGJ1dCBpZiB0aGUgZWxlbWVudCBoYXMgYSBsZW5ndGgoKSBncmVhdGVyIHRoYW4gb25lLCBwYXN0ZSgpIGFsbCB0aGUgZWxlbWVudHMgaW4gdGhhdCB2ZWN0b3IgdG9nZXRoZXIgaW50byBvbmUgYmlnIGNoYXJhY3RlciB2ZWN0b3IuCmBgYHtyfQoKYGBgCjMgRXh0ZW5zaW9uIC0gUHV6emxlcwozLjEKV3JpdGUgY29kZSB0aGF0IHByaW50cyBhIG11bHRpcGxpY2F0aW9uIHRhYmxlIGZvciBudW1iZXJzIHVwIHRvIDEyLiBpLmUuIHRoZXJlIHdpbGwgYmUgMTIgcm93cyBhbmQgMTIgY29sdW1ucywgYW5kIGVhY2ggZWxlbWVudCBzaG91bGQgYmUgdGhlIHJvdyBudW1iZXIgbXVsdGlwbGllZCBieSB0aGUgY29sdW1uIG51bWJlci4KCmBgYHtyfQptdWx0aXBsaWNhdGlvbl90YWJsZSA8LSBvdXRlcigxOjEyLCAxOjEyLCAiKiIpCnJvd25hbWVzKG11bHRpcGxpY2F0aW9uX3RhYmxlKSA8LSBwYXN0ZSgxOjEyKQptdWx0aXBsaWNhdGlvbl90YWJsZQpgYGAKMy4yCldyaXRlIGEgZnVuY3Rpb24gdGhhdCB0YWtlcyBhIHZlY3RvciwgYW5kIGNyZWF0ZXMgYSB0ZXh0IGFydCBoaXN0b2dyYW0sIGxpa2UgdGhlIG9uZSBiZWxvdy4KCllvdSBtYXkgd2FudCB0byB1c2UgdGhlIGZ1bmN0aW9uIGNhdCgpLiBUaGlzIGlzIHNpbWlsYXIgdG8gcHJpbnQoKSwgYnV0IHByaW50cyBkaXJlY3RseSwgd2l0aG91dCB2ZWN0b3IgbWFya2Vycy4gWW91IGNhbiBhbHNvIGluY2x1ZGUgbmV3bGluZXMgIlxuIiB3aGVuIHVzaW5nIGNhdCgpLgpgYGB7cn0KCmBgYAoKCgoKCgoKCgoKCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBwcm9ncmFtbWluZyAtIFdlZWtlbmQgSG9tZXdvcmsiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KGRwbHlyKQpgYGAKCjIuMiBpZiBzdGF0ZW1lbnRzIGFuZCBmdW5jdGlvbnMKCjIuMi4xCldyaXRlIGEgZnVuY3Rpb24gd2hpY2ggbXVsdGlwbGVzIGFsbCBudW1iZXJzIGJ5IDE1IGFuZCBhZGRzIDQuCmBgYHtyfQptdWx0aXBseV8xNV9hZGRfNCA8LSBmdW5jdGlvbih4KXsKICB4KjE1KzQKfQoKbXVsdGlwbHlfMTVfYWRkXzQoMSkKbXVsdGlwbHlfMTVfYWRkXzQoMikKbXVsdGlwbHlfMTVfYWRkXzQoMykKbXVsdGlwbHlfMTVfYWRkXzQoMjQpCmBgYAoyLjIuMgpXcml0ZSBhIGZ1bmN0aW9uIHRoYXQgcmV0dXJucyDigJxiaXJk4oCdLCBpZiB0aGUgaW5wdXQgaXMg4oCcZ29vc2XigJ0sIOKAnGR1Y2vigJ0gb3Ig4oCccGlnZW9u4oCdLCBhbmQgcmV0dXJucyDigJxub3QgYmlyZOKAnSBmb3IgYWxsIG90aGVyIGlucHV0LgpgYGB7cn0KCgp0ZXN0X2JpcmQgPC0gZnVuY3Rpb24oeCl7CiAgYmlyZHMgPC0gYygiZ29vc2UiLCAiZHVjayIsICJwaWdlb24iKQogIAogIGlmICh4ICVpbiUgYmlyZHMpewogICAgcmV0dXJuKCJiaXJkIikKICB9IGVsc2UgewogICAgIm5vdCBiaXJkIgogIH0KfQoKdGVzdF9iaXJkKCJnb29zZSIpCnRlc3RfYmlyZCgiYXBwbGUiKQp0ZXN0X2JpcmQoNSkKCgpgYGAKMi4yLjMKV3JpdGUgYSBmdW5jdGlvbiB3aGljaCBtdWx0aXBsaWVzIGFsbCBudW1iZXJzIGJ5IDEwLiBJZiB0aGUgaW5wdXQgaXNu4oCZdCBhIG51bWJlciwgdGhlIGZ1bmN0aW9uIHNob3VsZCByZXR1cm4g4oCcSW52YWxpZCBpbnB1dOKAnS4KYGBge3J9Cm11bHRpcGx5XzEwIDwtIGZ1bmN0aW9uKHgpewogIGlmIChjbGFzcyh4KSA9PSAibnVtZXJpYyIpewogICAgcmV0dXJuKHgqMTApCiAgfQogIGVsc2UKICAgIHJldHVybigiSW52YWxpZCBpbnB1dCIpCn0KCm11bHRpcGx5XzEwKCJoZWxsbyIpCmBgYAoyLjMgaWZlbHNlKCksIHJlY29kZSgpIGFuZCBjYXNlX3doZW4oKQoyLjMuMQpGb3IgdGhlIHZlY3RvciBiZWxvdywgbWFrZSBhIG5ldyB2ZWN0b3Igd2hpY2ggaXMgZXF1YWwgdG8g4oCcQmln4oCdIGV2ZXJ5IHRpbWUgdGhlIGVsZW1lbnQgb2Ygc2l6ZXMgaXMgZ3JlYXRlciB0aGFuIDEwLCBhbmQgZXF1YWwgdG8g4oCcU21hbGzigJ0gZXZlcnkgdGltZSB0aGUgZWxlbWVudCBvZiBzaXplcyBpcyBsZXNzIHRoYW4gb3IgZXF1YWwgdG8gMTAuCmlmZWxzZSgpCmBgYHtyfQpzaXplcyA8LSBjKDEzLCAxNSwgMTAsIDgsIDIyKQpgYGAKCmBgYHtyfQpzaXplc19uZXcgPC0gaWZlbHNlKHNpemVzID4gMTAsICJCaWciLCAiU21hbGwiKQoKc2l6ZXNfbmV3CmBgYApyZWNvZGUoKQpgYGB7cn0KCnNpemVzIDwtIGMoMTMsIDE1LCAxMCwgOCwgMjIpCgpuZXdfc2l6ZXMgPC0gYXMuZmFjdG9yKHNpemVzIDw9IDEwKQoKcmVjb2RlKG5ld19zaXplcywgIkZBTFNFIiA9ICJTbWFsbCIsICJUUlVFIiA9ICJCaWciKQpgYGAKY2FzZV93aGVuKCkKYGBge3J9CnNpemVzX25ld18zIDwtIGNhc2Vfd2hlbigKICBzaXplcyA+IDEwIH4gIkJpZyIsCiAgc2l6ZXMgPD0gMTAgfiAiU21hbGwiCikKCnNpemVzX25ld18zCmBgYAoKMi4zLjIKRm9yIHRoZSB2ZWN0b3IgYmVsb3cgY29udmVydDoKYXBwbGUg4oaSIGFscGFjYQpiYW5hbmEg4oaSIGJvbm9ibwpjaGVycnkg4oaSIGNoaXBtdW5rCmBgYHtyfQpmcnVpdCA8LSBjKCJhcHBsZSIsICJhcHBsZSIsICJiYW5hbmEiLCAiY2hlcnJ5IiwgImNoZXJyeSIpCmBgYAppZmVsc2UoKQpgYGB7cn0KaWZlbHNlKAogIGZydWl0ID09ICJhcHBsZSIsICJhbHBhY2EiLAogIGlmZWxzZShmcnVpdCA9PSAiYmFuYW5hIiwgImJvbm9ibyIsCiAgICAgICAgIGlmZWxzZShmcnVpdCA9PSAiY2hlcnJ5IiwgImNoaXBtdW5rIiwKICAgICAgICAgICAgICAgIE5BKQogICAgICAgICApCiAgKQpgYGAKcmVjb2RlKCkKYXBwbGUg4oaSIGFscGFjYQpiYW5hbmEg4oaSIGJvbm9ibwpjaGVycnkg4oaSIGNoaXBtdW5rCmBgYHtyfQpmcnVpdCA8LSBjKCJhcHBsZSIsICJhcHBsZSIsICJiYW5hbmEiLCAiY2hlcnJ5IiwgImNoZXJyeSIpCgpyZWNvZGUoZnJ1aXQsCiAgICAgICAiYXBwbGUiID0gImFscGFjYSIsIAogICAgICAgImJhbmFuYSIgPSAiYm9ub2JvIiwgCiAgICAgICAiY2hlcnJ5IiA9ICJjaGlwbXVuayIKKQoKZnJ1aXQKYGBgCmNhc2Vfd2hlbigKYGBge3J9CmZydWl0IDwtIGMoImFwcGxlIiwgImFwcGxlIiwgImJhbmFuYSIsICJjaGVycnkiLCAiY2hlcnJ5IikKCmNvbnZlcnNpb25zIDwtIGNhc2Vfd2hlbigKICBmcnVpdCA9PSAiYXBwbGUiIH4gImFscGFjYSIsCiAgZnJ1aXQgPT0gImJhbmFuYSIgfiAiYm9ub2JvIiwKICBmcnVpdCA9PSAiY2hlcnJ5IiB+ICJjaGlwbXVuayIKKQpjb252ZXJzaW9ucwpgYGAKMi4zLjMKVGhlIHR3byB2ZWN0b3JzIGJlbG93IHNob3cgdGhlIGFnZXMgYXQgbWFycmlhZ2Ugb2YgZWFjaCBtZW1iZXIgb2YgYSBjb3VwbGUuIFRoZSBmaXJzdCBlbGVtZW50cyBvZiBlYWNoIHZlY3RvciBjb3JyZXNwb25kIHRvIHRoZSBmaXJzdCBjb3VwbGUsIHRoZSBzZWNvbmQgZWxlbWVudHMgdG8gdGhlIHNlY29uZCBjb3VwbGUsIGFuZCBzbyBvbi4KCkNyZWF0ZSBhIG5ldyB2ZWN0b3Igd2hpY2ggaXMgZXF1YWwgdG86CgrigJxXaWZlIG9sZGVy4oCdIHdoZW5ldmVyIHRoZSB3aWZl4oCZcyBhZ2UgaXMgaGlnaGVzdCDigJxIdXNiYW5kIG9sZGVy4oCdIHdoZW4gdGhlIGh1c2JhbmTigJlzIGFnZSBpcyBoaWdoZXN0IOKAnFNhbWUgYWdl4oCdIHdoZW4gdGhleSBhcmUgdGhlIHNhbWUgYWdlCmBgYHtyfQp3aWZlX2FnZSA8LSBjKDI5TCwgMzBMLCAzNkwsIDMxTCwgMjJMKQpodXNiYW5kX2FnZSA8LSBjKDI4TCwgMzVMLCAzMkwsIDMxTCwgMjlMKQpgYGAKaWZlbHNlKCkKYGBge3J9CmlmZWxzZSh3aWZlX2FnZSA8IGh1c2JhbmRfYWdlLCAiSHVzYmFuZCBvbGRlciIsIGlmZWxzZSh3aWZlX2FnZSA+IGh1c2JhbmRfYWdlLCAiV2lmZSBPbGRlciIsICJTYW1lIGFnZSIpKQpgYGAKcmVjb2RlKCkKYGBge3J9CndpZmVfYWdlIDwtIGMoMjlMLCAzMEwsIDM2TCwgMzFMLCAyMkwpCmh1c2JhbmRfYWdlIDwtIGMoMjhMLCAzNUwsIDMyTCwgMzFMLCAyOUwpCgojIG5ld19zaXplcyA8LSBhcy5mYWN0b3Ioc2l6ZXMgPD0gMTApCgojIHJlY29kZShuZXdfc2l6ZXMsICJGQUxTRSIgPSAiU21hbGwiLCAiVFJVRSIgPSAiQmlnIikKYGBgCmNhc2Vfd2hlbigpCmBgYHtyfQpjYXNlX3doZW4oCiAgd2lmZV9hZ2UgIDwgaHVzYmFuZF9hZ2UgIH4gIkh1c2JhbmQgb2xkZXIiLAogIHdpZmVfYWdlICA+IGh1c2JhbmRfYWdlICB+ICJXaWZlIG9sZGVyIiwKICB3aWZlX2FnZSA9PSBodXNiYW5kX2FnZSAgfiAiU2FtZSBhZ2UiCikKYGBgCjIuNCBMb29wcwpgYGB7cn0KbXlfbGlzdCA8LSBsaXN0KAogIDQsCiAgImFwcGxlIiwKICAxMC41LAogIGMoImlzIiwgImFuIiwgImFwcGxlIiksCiAgImFwcGxlIiwKICBjKCJpIiwgImxpa2UiLCAiYXBwbGVzIiksCiAgOAopCmBgYAoyLjQuMQpVc2UgYSBmb3IgbG9vcCB0byBwcmludCBvdXQgZXZlcnkgZWxlbWVudCBvZiBteV9saXN0IHdoaWNoIGlzIG9mIHR5cGUgY2hhcmFjdGVyLgpgYGB7cn0KZm9yKGVsZW0gaW4gbXlfbGlzdCl7CiAgaWYoaXMuY2hhcmFjdGVyKGVsZW0pKXsKICAgIHByaW50KGVsZW0pCiAgfQp9IAoKYGBgCgoyLjQuMgpEbyB0aGUgc2FtZSBhcyBhYm92ZSwgYnV0IHRoaXMgdGltZSB1c2UgYSB3aGlsZSBsb29wLgpgYGB7cn0Kd2hpbGUobXlfbGlzdCA9PSAiY2hhcmFjdGVyIikKYGBgCgoyLjQuMwpOb3csIGRvIHRoZSBzYW1lIGFnYWluLCBidXQgaWYgdGhlIGVsZW1lbnQgaGFzIGEgbGVuZ3RoKCkgZ3JlYXRlciB0aGFuIG9uZSwgcGFzdGUoKSBhbGwgdGhlIGVsZW1lbnRzIGluIHRoYXQgdmVjdG9yIHRvZ2V0aGVyIGludG8gb25lIGJpZyBjaGFyYWN0ZXIgdmVjdG9yLgpgYGB7cn0KCmBgYAoKCjMgRXh0ZW5zaW9uIC0gUHV6emxlcwozLjEKV3JpdGUgY29kZSB0aGF0IHByaW50cyBhIG11bHRpcGxpY2F0aW9uIHRhYmxlIGZvciBudW1iZXJzIHVwIHRvIDEyLiBpLmUuIHRoZXJlIHdpbGwgYmUgMTIgcm93cyBhbmQgMTIgY29sdW1ucywgYW5kIGVhY2ggZWxlbWVudCBzaG91bGQgYmUgdGhlIHJvdyBudW1iZXIgbXVsdGlwbGllZCBieSB0aGUgY29sdW1uIG51bWJlci4KCmBgYHtyfQptdWx0aXBsaWNhdGlvbl90YWJsZSA8LSA/b3V0ZXIoMToxMiwgMToxMiwgIioiKQpyb3duYW1lcyhtdWx0aXBsaWNhdGlvbl90YWJsZSkgPC0gcGFzdGUoMToxMikKCm11bHRpcGxpY2F0aW9uX3RhYmxlCmBgYAozLjIKV3JpdGUgYSBmdW5jdGlvbiB0aGF0IHRha2VzIGEgdmVjdG9yLCBhbmQgY3JlYXRlcyBhIHRleHQgYXJ0IGhpc3RvZ3JhbSwgbGlrZSB0aGUgb25lIGJlbG93LgoKWW91IG1heSB3YW50IHRvIHVzZSB0aGUgZnVuY3Rpb24gY2F0KCkuIFRoaXMgaXMgc2ltaWxhciB0byBwcmludCgpLCBidXQgcHJpbnRzIGRpcmVjdGx5LCB3aXRob3V0IHZlY3RvciBtYXJrZXJzLiBZb3UgY2FuIGFsc28gaW5jbHVkZSBuZXdsaW5lcyAiXG4iIHdoZW4gdXNpbmcgY2F0KCkuCmBgYHtyfQoKYGBgCgoKCgoKCgoKCgoKCgoKCg==</div>
 
 
 
