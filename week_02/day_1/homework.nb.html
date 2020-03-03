@@ -1797,19 +1797,39 @@ cols(
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVhZF9jc3YoXCJkYXRhL3N0YXRlX2luY29tZV9kYXRhLmNzdlwiLCBjb2xfbmFtZXMgPSBjKFwiYVwiLCBcImJcIiwgXCJjXCIpKVxuYGBgIn0= -->
 <pre class="r"><code>read_csv(&quot;data/state_income_data.csv&quot;, col_names = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICBhID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGIgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgYyA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltXG4pXG41MiBwYXJzaW5nIGZhaWx1cmVzLlxucm93IGNvbCAgZXhwZWN0ZWQgICAgIGFjdHVhbCAgICAgICAgICAgICAgICAgICAgICAgICBmaWxlXG4gIDEgIC0tIDMgY29sdW1ucyAxNiBjb2x1bW5zICdkYXRhL3N0YXRlX2luY29tZV9kYXRhLmNzdidcbiAgMiAgLS0gMyBjb2x1bW5zIDE2IGNvbHVtbnMgJ2RhdGEvc3RhdGVfaW5jb21lX2RhdGEuY3N2J1xuICAzICAtLSAzIGNvbHVtbnMgMTYgY29sdW1ucyAnZGF0YS9zdGF0ZV9pbmNvbWVfZGF0YS5jc3YnXG4gIDQgIC0tIDMgY29sdW1ucyAxNiBjb2x1bW5zICdkYXRhL3N0YXRlX2luY29tZV9kYXRhLmNzdidcbiAgNSAgLS0gMyBjb2x1bW5zIDE2IGNvbHVtbnMgJ2RhdGEvc3RhdGVfaW5jb21lX2RhdGEuY3N2J1xuLi4uIC4uLiAuLi4uLi4uLi4gLi4uLi4uLi4uLiAuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uXG5TZWUgcHJvYmxlbXMoLi4uKSBmb3IgbW9yZSBkZXRhaWxzLlxuIn0= -->
+<pre><code>Parsed with column specification:
+cols(
+  a = [31mcol_character()[39m,
+  b = [31mcol_character()[39m,
+  c = [31mcol_character()[39m
+)
+52 parsing failures.
+row col  expected     actual                         file
+  1  -- 3 columns 16 columns 'data/state_income_data.csv'
+  2  -- 3 columns 16 columns 'data/state_income_data.csv'
+  3  -- 3 columns 16 columns 'data/state_income_data.csv'
+  4  -- 3 columns 16 columns 'data/state_income_data.csv'
+  5  -- 3 columns 16 columns 'data/state_income_data.csv'
+... ... ......... .......... ............................
+See problems(...) for more details.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInNwZWNfdGJsX2RmIiwidGJsX2RmIiwidGJsIiwiZGF0YS5mcmFtZSJdLCJuY29sIjozLCJucm93Ijo1Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUErMVpXVlBqUmhBVytNRDJBa3VTemIxSm5KTmNzQnFOemtjS2FoZkNHclk0ZDUrb3NUemdLY3NhbDBibXlGTitZSDVUU0F0ck5JTlprbjNZcmRvSFZmRlozVDNkUFgyTUxMbloyM2lKV3k5YmhtRlVqRW9kUG10QUdyWERnNmNydm1GVVo0R1pNYXBHTTd0ZXd2SkhONXFHc1FTdzg0WGFWdHlqbDFKcjdRMkk5ZnVKalR2RVUwazhrOFNtSkxiZWdOaStRenlYUk9jdEVUdHZpZGk5bjNnaGlUMUo3TjhoRHU0UWg1STR1a01jL3hjeDFkLzlsS1EwWitiV0l0SWxRNUt6ZFdERmdCU0xDZnVUeDVKdHJDVURFZ3NpY3I2MVRpSjJ5cE9ZRlJyclBPSUo2ZkdjZjdETzQ1aUdLUXZIcVZUWm9CRzVJSWtNNE5FR0UybkN3clROVDl0Z1BoNTJDM2R6VDhFYjZ4WHNNOHFUczJLMXZnbCtHQ3RPYlkvMDViNk5yU2hpTVdjeTBqazQwb3dVaVZTMytFWGhaVnRQcWJGTjQzUWNEcTV5dnZtY2o1blFUR3Nkd21JWmU2TkRrcXVJeEwyY1grZ1FJVWpZSHd1YXBvWExEZ3Y3N0l6RTBtV0hRVTBFVDZYTEJ4MG1SUFkzR2pGbEl3UWZKNUtmNi9BNFZVRTBkbWczMGZwVTM2SG5wQ2pUd2c2OWFHK1M0VWowV1ZIbVZpYjhneWFDWHVtU0RyMWtJVmR1TDlxdmVETEkrY1VkbnFUOTlqcEpPRlJUdXArZlNEZklRS1ZRM2UyendzdnVJSUpPcUNPMW05QXpMck9mZjBIaldGeEY1MFNkbXZtOVB1L1I5cGJRU3JtNHo4ZXYyWHNpdmJWMzg0Qm05UlJVcGxvN29KZEZRNnVIS2VuTEtoN1JaQWlGbElFZU1UaE5Lb3pXTVlHS3hXZHBFZXpDTVJWcGUwcXRlY3hFeUdQQnBOYmM4UlVmZ3QzMGJmYktNazFMNmlBcmNCMXNGaXp5VEt5dGVyWmxXbDdCMnI3allGU3dydTlnT3loWWJHUGZzdFVxTWgya1hHRnMyaVpXR3lGa1krVTVjRzNYY2hWckJhYXBQTnN1Y2p3VkpIYXdoUlRybUQ1MmxLM251UUh5bFcwUVdHNmdLUWVtbzRMMEVmWTlwZXo0dG9kdGpiVThTOXZJQ3p5a1VuQnREeFMwU2pvdWRsUVlGbXlzYWhYNDJQTFZxbVVoakZUTXZ1Y2hQU29mY2xLMnR1VkNZeFNMQXNoUmhXRkNVeXd0bzhEQ1dsTUNCMms5Y3BFTFBkVlkzemVWWjkrRXNOUXE4ckJlU1Mrd0E3Mmhsb2tDcEJVV1RvdldmWXdjUzNQbEJLYldiaDhoMzFXc1k1bU81Z3FLWVFZcVFXaC9vSjNKN0p4cDFZQmFlSHFDSGpSUXJYcStIMmdkOUR3SEJlYlVHMGN0SmtNcTh0dWtJaDlQOHI2YTZVb2luTFlMNGFFazdhU3cxU01wV1QxTndPV1VlalBoRjZ0eXF3WEE3Ri93Y1gxOS9mZVVZbU9VOEc1RWh5Si9FYXJsK3ZhTkR0Z1prNWVqYXI1V3oxTEw3TEpOc2hDeUwrL3NXeW0zV3dROHpNUDhBUEFoSVBQN0NQQXg0QlBBcDREUEFKOER2Z0I4Q1hnTStBcndOZUFiUUJ2d0xlQTd3UGVBSHdBL0FuNENMQU4rQnZ3QytCWHdHK0Izd0FwZ0ZmQUVBSFUzRU1BQzREeWZwZnphaERwY2w5ZjM5anJwVTM2UWNUdk1Yb2hpVVFwS1FTbDR0NExiOTE0THVWT3FwYVNVbEpMM1IzTDdmbjI4bkwwUFBoSFphT09FeFNFZjBwT2JOOFJRbkMrWE9xVk9xVlBxbERxbFRxbnpQem8zTTVKWitWdTBsdHRVRW40aFNYZ0M1MlNEWG81b21GSTV0YTJUTUIwVHVWbzlaVkUrbktsbS9sNHppNm5JZmVRNHFKNTJvNVBlcWR3S09Qbm83Mm56SHVPZkNXNk5jK2I0S0dVOGV6T1lsZE9jSlcxNUpwa1NQQnpIMlpTb3R4TDJ4L0ZnSlp1T3RJeko1TWZJbzUweEpsTVRTVmZ1cVU2ZHhtZnEzd0sxaUhTcGpIc1JDbmN6akZvZEpheVlQYmRBS2xaVG5oYkZha0ZWcFNUUDcxK3E5NElKelJzQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["a"],"name":[1],"type":["chr"],"align":["left"]},{"label":["b"],"name":[2],"type":["chr"],"align":["left"]},{"label":["c"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Index","2":"State","3":"Y2002"},{"1":"A","2":"Alabama","3":"1296530"},{"1":"A","2":"Alaska","3":"1170302"},{"1":"A","2":"Arizona","3":"1742027"},{"1":"A","2":"Arkansas","3":"1485531"},{"1":"C","2":"California","3":"1685349"},{"1":"C","2":"Colorado","3":"1343824"},{"1":"C","2":"Connecticut","3":"1610512"},{"1":"D","2":"Delaware","3":"1330403"},{"1":"D","2":"District of Columbia","3":"1111437"},{"1":"F","2":"Florida","3":"1964626"},{"1":"G","2":"Georgia","3":"1929009"},{"1":"H","2":"Hawaii","3":"1461570"},{"1":"I","2":"Idaho","3":"1353210"},{"1":"I","2":"Illinois","3":"1508356"},{"1":"I","2":"Indiana","3":"1776918"},{"1":"I","2":"Iowa","3":"1499269"},{"1":"K","2":"Kansas","3":"1509054"},{"1":"K","2":"Kentucky","3":"1813878"},{"1":"L","2":"Louisiana","3":"1584734"},{"1":"M","2":"Maine","3":"1582720"},{"1":"M","2":"Maryland","3":"1579713"},{"1":"M","2":"Massachusetts","3":"1647582"},{"1":"M","2":"Michigan","3":"1295635"},{"1":"M","2":"Minnesota","3":"1729921"},{"1":"M","2":"Mississippi","3":"1983285"},{"1":"M","2":"Missouri","3":"1221316"},{"1":"M","2":"Montana","3":"1877154"},{"1":"N","2":"Nebraska","3":"1885081"},{"1":"N","2":"Nevada","3":"1426117"},{"1":"N","2":"New Hampshire","3":"1419776"},{"1":"N","2":"New Jersey","3":"1605532"},{"1":"N","2":"New Mexico","3":"1819239"},{"1":"N","2":"New York","3":"1395149"},{"1":"N","2":"North Carolina","3":"1616742"},{"1":"N","2":"North Dakota","3":"1618807"},{"1":"O","2":"Ohio","3":"1802132"},{"1":"O","2":"Oklahoma","3":"1173918"},{"1":"O","2":"Oregon","3":"1794912"},{"1":"P","2":"Pennsylvania","3":"1320191"},{"1":"R","2":"Rhode Island","3":"1501744"},{"1":"S","2":"South Carolina","3":"1631522"},{"1":"S","2":"South Dakota","3":"1159037"},{"1":"T","2":"Tennessee","3":"1811867"},{"1":"T","2":"Texas","3":"1520591"},{"1":"U","2":"Utah","3":"1771096"},{"1":"V","2":"Vermont","3":"1146902"},{"1":"V","2":"Virginia","3":"1134317"},{"1":"W","2":"Washington","3":"1977749"},{"1":"W","2":"West Virginia","3":"1677347"},{"1":"W","2":"Wisconsin","3":"1788920"},{"1":"W","2":"Wyoming","3":"1775190"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[52]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Read in the cars.csv file and use the col_types() function to ensure you load in:</p>
 <p>X1 as character mpg, cyl, disp, hp as double vs as logical</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MocmF3X2NhcnMpXG5cbmBgYCJ9 -->
-<pre class="r"><code>class(raw_cars)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmF3X2NhcnMgPC0gP3JlYWRfY3N2KFwiZGF0YS9jYXJzLmNzdlwiLCBjb2xfdHlwZXMgPSBjb2xfbG9naWNhbCh2cykpXG5gYGAifQ== -->
+<pre class="r"><code>raw_cars &lt;- ?read_csv(&quot;data/cars.csv&quot;, col_types = col_logical(vs))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaGVscF9maWxlc193aXRoX3RvcGljXCJcbiJ9 -->
-<pre><code>[1] &quot;help_files_with_topic&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Read in the scotland.txt file using the appropriate function.</p>
@@ -1836,6 +1856,9 @@ cols(
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmVjdG9yIDwtIHJlYWRfZmlsZSgpXG5gYGAifQ== -->
 <pre class="r"><code>vector &lt;- read_file()</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZW1wdHlfZmlsZShmaWxlKSA6IGFyZ3VtZW50IFwiZmlsZVwiIGlzIG1pc3NpbmcsIHdpdGggbm8gZGVmYXVsdFxuIn0= -->
+<pre><code>Error in empty_file(file) : argument &quot;file&quot; is missing, with no default</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Read in the steam-200k-sample.csv file. Fix any problems you may encounter.</p>
