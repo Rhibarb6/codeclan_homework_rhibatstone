@@ -12,56 +12,45 @@ library(dplyr)
 library(haven)
 library(jsonlite)
 ```
-Read in the state_income_data.csv file using the appropriate function.
+
 ```{r}
 raw_state_income <- read_csv("data/state_income_data.csv")
 ```
 
-How do you specify your own column names when using read_csv()?
 ```{r}
 read_csv("data/state_income_data.csv", col_names = c("a", "b", "c"))
 ```
 
-Read in the cars.csv file and use the col_types() function to ensure you load in:
 
-X1 as character
-mpg, cyl, disp, hp as double
-vs as logical
 ```{r}
 raw_cars <- ?read_csv("data/cars.csv", col_types = col_logical(vs))
 ```
 
-Read in the scotland.txt file using the appropriate function.
+
 ```{r}
 raw_scotland <- read_delim("data/scotland.txt", delim = ";", skip = 2, col_names = c("Rank", "Locality", "Population", "Status", "Council Area"))
 ```
 
-How do you read text into a one element character vector?
 ```{r}
 vector <- read_file()
 ```
 
-Read in the steam-200k-sample.csv file. Fix any problems you may encounter.
 ```{r}
 read_csv("data/steam-200k-sample.csv", skip = 4)
 ```
 
-Read in the historic_eu_payments.tsv file.
+
 ```{r}
 read_tsv("data/historic_eu_payments.tsv")
 ```
-
-How do you read lines of text into a multi-element text vector?
 ```{r}
 
 ```
 
-Read in the africa_health_data.dta file using the appropriate method.
 ```{r}
 read_dta("data/africa_health_data.dta")
 ```
 
-Read in the JSON file from the following url: http://makemeanalyst.com/wp-content/uploads/2017/06/sample_json.txt
 ```{r}
 raw_json_file <- read_file("http://makemeanalyst.com/wp-content/uploads/2017/06/sample_json.txt")
 json_file <- parse_json(json_file)
@@ -69,9 +58,6 @@ json_file <- parse_json(json_file)
 ```
 
 2 Extension
-A lot of Excel sheets you will encounter will contain more than one sheet. Try to write some code that reads in all the different sheets in the file green_bindle_consulting.xlsx.
-
-[Hint: you will need to write a for loop]
 ```{r}
 read_xlsx("data/green_bindle_consulting.xlsx")
 ```

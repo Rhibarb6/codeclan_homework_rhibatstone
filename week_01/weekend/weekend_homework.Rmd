@@ -10,7 +10,7 @@ library(dplyr)
 2.2 if statements and functions
 
 2.2.1
-Write a function which multiples all numbers by 15 and adds 4.
+
 ```{r}
 multiply_15_add_4 <- function(x){
   x*15+4
@@ -22,7 +22,7 @@ multiply_15_add_4(3)
 multiply_15_add_4(24)
 ```
 2.2.2
-Write a function that returns “bird”, if the input is “goose”, “duck” or “pigeon”, and returns “not bird” for all other input.
+
 ```{r}
 
 
@@ -43,7 +43,7 @@ test_bird(5)
 
 ```
 2.2.3
-Write a function which multiplies all numbers by 10. If the input isn’t a number, the function should return “Invalid input”.
+
 ```{r}
 multiply_10 <- function(x){
   if (class(x) == "numeric"){
@@ -57,8 +57,7 @@ multiply_10("hello")
 ```
 2.3 ifelse(), recode() and case_when()
 2.3.1
-For the vector below, make a new vector which is equal to “Big” every time the element of sizes is greater than 10, and equal to “Small” every time the element of sizes is less than or equal to 10.
-ifelse()
+
 ```{r}
 sizes <- c(13, 15, 10, 8, 22)
 ```
@@ -88,11 +87,14 @@ sizes_new_3
 ```
 
 2.3.2
-For the vector below convert:
+
 apple → alpaca
 banana → bonobo
 cherry → chipmunk
 ```{r}
+#apple → alpaca
+# banana → bonobo
+# cherry → chipmunk
 fruit <- c("apple", "apple", "banana", "cherry", "cherry")
 ```
 ifelse()
@@ -106,9 +108,7 @@ ifelse(
   )
 ```
 recode()
-apple → alpaca
-banana → bonobo
-cherry → chipmunk
+
 ```{r}
 fruit <- c("apple", "apple", "banana", "cherry", "cherry")
 
@@ -132,11 +132,7 @@ conversions <- case_when(
 conversions
 ```
 2.3.3
-The two vectors below show the ages at marriage of each member of a couple. The first elements of each vector correspond to the first couple, the second elements to the second couple, and so on.
 
-Create a new vector which is equal to:
-
-“Wife older” whenever the wife’s age is highest “Husband older” when the husband’s age is highest “Same age” when they are the same age
 ```{r}
 wife_age <- c(29L, 30L, 36L, 31L, 22L)
 husband_age <- c(28L, 35L, 32L, 31L, 29L)
@@ -175,7 +171,7 @@ my_list <- list(
 )
 ```
 2.4.1
-Use a for loop to print out every element of my_list which is of type character.
+
 ```{r}
 for(elem in my_list){
   if(is.character(elem)){
@@ -186,13 +182,13 @@ for(elem in my_list){
 ```
 
 2.4.2
-Do the same as above, but this time use a while loop.
+
 ```{r}
 while(my_list == "character")
 ```
 
 2.4.3
-Now, do the same again, but if the element has a length() greater than one, paste() all the elements in that vector together into one big character vector.
+
 ```{r}
 
 ```
@@ -200,7 +196,7 @@ Now, do the same again, but if the element has a length() greater than one, past
 
 3 Extension - Puzzles
 3.1
-Write code that prints a multiplication table for numbers up to 12. i.e. there will be 12 rows and 12 columns, and each element should be the row number multiplied by the column number.
+
 
 ```{r}
 multiplication_table <- ?outer(1:12, 1:12, "*")
@@ -209,9 +205,7 @@ rownames(multiplication_table) <- paste(1:12)
 multiplication_table
 ```
 3.2
-Write a function that takes a vector, and creates a text art histogram, like the one below.
 
-You may want to use the function cat(). This is similar to print(), but prints directly, without vector markers. You can also include newlines "\n" when using cat().
 ```{r}
 
 ```
