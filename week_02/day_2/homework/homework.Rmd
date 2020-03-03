@@ -1,0 +1,81 @@
+---
+title: "Homework"
+output: html_notebook
+---
+1 MVP
+1.1 Local PostgreSQL connections
+
+```{r}
+library(keyring)
+library(RPostgreSQL)
+```
+
+```{r}
+keyring_unlock("local")
+username <- key_get("postgresql_username", keyring = "local") 
+password <- key_get("postgresql_password", keyring = "local")
+
+db_connect <- dbConnect(drv = PostgreSQL(max.con = 2), user = username, password = password, dbname = "wrestling", host = "localhost")
+
+keyring_lock("local")
+
+rm(username, password)
+```
+
+```{r}
+wrestler_data <- dbGetQuery(db_connect, "SELECT * FROM wrestlers" )
+```
+id -> Integer
+born -> Character
+name -> Character
+gender -> Character
+win_percent -> Double
+total_matches -> Integer
+
+```{r}
+dbDisconnect(conn = db_connect)
+```
+
+1.2 Remote PostgreSQL connections
+```{r}
+keyring_unlock("remote")
+remote_username <- key_get("remote_username", keyring = "remote") 
+remote_password <- key_get("remote_password", keyring = "remote")
+
+remote_db_connect <- dbConnect(drv = PostgreSQL(max.con = 2), user = remote_username, password = remote_password, dbname = "mvhbdgdk", host = "manny.db.elephantsql.com")
+
+keyring_lock("remote")
+
+rm(remote_username, remote_password)
+```
+
+```{r}
+dbGetQuery(remote_db_connect, "SELECT * FROM wrestlers" )
+```
+
+
+```{r}
+dbDisconnect(conn = remote_db_connect)
+```
+
+EXTENSIONS
+2
+
+```{r}
+dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE born = 'United Kingdom'")
+
+dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE born = 'Japan' AND total_matches > 39")
+
+dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE win_percent BETWEEN 50 AND 60")
+
+dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE name LIKE 'A%'")
+
+dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE born LIKE 'I%'")
+
+dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE born NOT LIKE 'I%'")
+```
+
+
+
+
+
