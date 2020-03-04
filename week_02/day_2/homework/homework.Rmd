@@ -15,7 +15,11 @@ keyring_unlock("local")
 username <- key_get("postgresql_username", keyring = "local") 
 password <- key_get("postgresql_password", keyring = "local")
 
-db_connect <- dbConnect(drv = PostgreSQL(max.con = 2), user = username, password = password, dbname = "wrestling", host = "localhost")
+db_connect <- dbConnect(drv = PostgreSQL(max.con = 2), 
+                        user = username, password = password, 
+                        dbname = "wrestling", 
+                        host = "localhost"
+                        )
 
 keyring_lock("local")
 
@@ -42,7 +46,12 @@ keyring_unlock("remote")
 remote_username <- key_get("remote_username", keyring = "remote") 
 remote_password <- key_get("remote_password", keyring = "remote")
 
-remote_db_connect <- dbConnect(drv = PostgreSQL(max.con = 2), user = remote_username, password = remote_password, dbname = "mvhbdgdk", host = "manny.db.elephantsql.com")
+remote_db_connect <- dbConnect(drv = PostgreSQL(max.con = 2), 
+                               user = remote_username, 
+                               password = remote_password, 
+                               dbname = "mvhbdgdk", 
+                               host = "manny.db.elephantsql.com"
+                               )
 
 keyring_lock("remote")
 
@@ -64,7 +73,7 @@ EXTENSIONS
 ```{r}
 dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE born = 'United Kingdom'")
 
-dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE born = 'Japan' AND total_matches > 39")
+dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE born = 'Japan' AND total_matches >= 40")
 
 dbGetQuery(db_connect, "SELECT * FROM wrestlers WHERE win_percent BETWEEN 50 AND 60")
 
