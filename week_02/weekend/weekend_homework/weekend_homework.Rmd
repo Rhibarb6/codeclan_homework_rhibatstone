@@ -69,7 +69,7 @@ dbGetQuery(db_connect,
 
 2 Extensions
 2.1 Harder SQL queries
-Which of the employees provided the most recent feedback? What was the date of this feedback?
+
 ```{r}
 dbGetQuery(db_connect, 
             "SELECT *
@@ -80,7 +80,6 @@ dbGetQuery(db_connect,
             LIMIT 1")
 ```
 
-You are chatting with one of the AcmeCorp employees, and she mentions that one of the teams in the corporation has some employees whose first_name contains only their first initial, e.g. “D” instead of “Dionne”, “C” instead of “Charles” (they had a really formal administrator a few years back). Can you find the name of the team that she is most likely referring to (i.e. which team has the highest number of employees with single initial first_names)`?
 
 ```{r}
 dbGetQuery(db_connect, 
@@ -88,7 +87,7 @@ dbGetQuery(db_connect,
             FROM employees AS e
             INNER JOIN teams AS t
             ON e.team_id = t.id
-            WHERE e.first_name LIKE '%_' 
+            WHERE e.first_name LIKE '_' 
             GROUP BY t.name
             ORDER BY num_initials DESC
             LIMIT 1")
@@ -100,13 +99,7 @@ positive_words <- c("great", "good", "happy", "content", "fulfilled", "fulfilled
 
 negative_words <- c("worse", "worsening", "worst", "slow", "sluggish", "impatient", "unfulfilled", "unfulfilling", "negative", "bad", "limited", "limit", "limitations", "cons", "frustrated", "frustrating", "frustration", "dull", "boring", "politics", "political", "ignore", "ignored", "ignoring", "sad", "depressed", "depressing", "nasty", "stress", "stresses", "stressed", "horrid", "horrible", "terrible", "deadline", "deadlines", "uncaring", "remote")
 ```
-AcmeCorp would like you to perform very basic ‘sentiment analysis’ of the stored employee feedbacks. They have provided a set of ‘positive’ and ‘negative’ words to use to score feedback messages in this analysis.
-The score for each message should start at zero.
-Every time a ‘positive’ word occurs in a message, the message’s score should increase by 1 point.
-Every time a ‘negative’ word occurs in a message, the message’s score should decrease by 1 point.
-Punctuation marks should be removed prior to scoring [Hint - the gsub() function can help here. You probably want to pass fixed = TRUE into this function].
-Messages should also be converted to lowercase prior to scoring [Hint - the tolower() function can help here].
-Write R code to score all of the stored feedback messages according to these rules.
+
 
 
 ```{r}
@@ -114,10 +107,10 @@ library(stringr)
 feedback <- dbGetQuery(db_connect,"
                        SELECT message
                        FROM feedbacks")
-toString(feedback)
+feedback <- toString(feedback)
 messages_nopunc <- gsub("[[:punct:]]", "", feedback)
 messages <- tolower(messages_nopunc)
-
+ 
 score_messages <- function(x){
   
 }
