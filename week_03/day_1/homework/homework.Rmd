@@ -25,7 +25,6 @@ summary_calories <- summarise(drinks_content, mean = mean(Calories), var = var(C
 
 Question 3
 
-Check if you have any outliers in the Calories variable by creating a boxplot. Then get the actual values of any outliers you have. Finally, decide what you want to do here. Do you want to remove the outliers? Do you want to keep them? Justify your decision either way. As you work through your outlier identification and removal process, write a summary of what you find (i.e. do you find any outliers), what you decide to do (why you are removing them or not, what criteria you might use), and how you removed them if you did (e.g. did you remove all or not).
 ```{r}
 boxplot(drinks_content$Calories)
 outliers <- boxplot(
@@ -37,7 +36,6 @@ outliers <- boxplot(
 
 Question 4
 
-Select the variables beverage_category, beverage, beverage prep and calories from your data. Since we are interested in the calorie content, check if there are any NA values in the data, and drop them if there are.
 ```{r}
 selection <- select(drinks_content, Beverage_category, Beverage, Beverage_prep, Calories)
 drop_na(selection)
@@ -45,14 +43,14 @@ drop_na(selection)
 
 Question 5
 
-Filter the data so we only take “classic espresso drinks”.
+
 ```{r}
 filter(drinks_content, Beverage_category == "Classic Espresso Drinks")
 ```
 
 Question 6
 
-Create a new tibble called drink_calories which contains a variable called calorie_diff. calorie_diff should store the difference between 135 calories (135 calories = 10 cubes of sugar!) and the calories in each drink. (hint: you’ll want to subtract the calories from 135 to see which drink have more or less than 10 cups of sugar).
+
 ```{r}
 drink_calories <- drinks_content %>%
   mutate(calorie_diff = Calories - 135)
@@ -71,7 +69,7 @@ drinks_summary <- drinks_grouped %>%
 
 Question 8
 
-Hopefully you can see by now how much hassle it can be to constantly keep creating tibbles to store all your data. Finish up by using the %>% operator to put all the answers you’ve got from questions 4-7 into one pipe. You don’t need to include the check for NA values in this, as you’d typically check that before you start doing any analysis.
+
 ```{r}
 selection <- select(drinks_content, Beverage_category, Beverage, Beverage_prep, Calories)
 drop_na(selection)
@@ -101,7 +99,6 @@ drinks_summary_2 <- drinks_content %>%
 
 Question 9
 
-Use the drink_calories data to find the two drinks (Beverage) with least and most Calories.
 ```{r}
 max_calories <- drink_calories %>%
   top_n(1, Calories)
@@ -113,7 +110,6 @@ min_calories <- drink_calories %>%
 
 Question 10
 
-For each drink in the drinks_grouped data, find all drinks which more calories than the average drink. Save this in a new tibble called above_average_calories.
 ```{r}
   
 above_average_calories <- drinks_grouped %>%
@@ -124,8 +120,6 @@ above_average_calories <- drinks_grouped %>%
 
 Question 11
 
-Using the drinks_grouped data, apply the cume_dist function to get the top 25% of Calorie drinks within each group. Save this in a new tibble called drinks_distribution.
-
 ```{r}
 drinks_distribution <- drinks_grouped %>%
   filter(Calories(cume_dist(drinks_grouped$Calories) > 0.25) = TRUE)
@@ -135,33 +129,4 @@ drinks_distribution <- drinks_grouped %>%
 ```
 
 
-
-For the extension task, we will use the nycflights13 package data to work on some joins. This dataset contains all 336776 flights that departed from New York City in 2013. The data comes from the US Bureau of Transportation Statistics, and is documented in ?nycflights13. It contains 5 related tables:
-* airlines : airline names * airports : airport metadata * flights : flight time data for NYC departing flights * planes : plane metadata * weather : hourly weather data
-
-You can find out more about the package here
-
-
-You might need to install the package first.
-
-```{r}
-library(nycflights13)
-```
-
-
-Extension question 1
-
-Add the weather to the flights data by city of origin.
-
-
-Extension question 2
-
-Add the location of the origin and destination (i.e. the lat and lon) to flights. Only keep those that have a location.
-
-Extension question 3
-
-Find the 10 most popular destinations to fly to, and then perform a join to find which flight went with those top 10 destinations.
-```{r}
-
-```
 
