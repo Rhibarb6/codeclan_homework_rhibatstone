@@ -117,8 +117,7 @@ For each drink in the drinks_grouped data, find all drinks which more calories t
 ```{r}
   
 above_average_calories <- drinks_grouped %>%
-  summarise(mean_cal = mean(Calories)) %>%
-  filter("Calories" > mean_cal)
+  filter(Calories > mean(Calories))
    
   
 ```
@@ -129,8 +128,10 @@ Using the drinks_grouped data, apply the cume_dist function to get the top 25% o
 
 ```{r}
 drinks_distribution <- drinks_grouped %>%
-  filter(drinks_grouped$Calories,
-         (cume_dist(drinks_grouped$Calories) > 0.25) = TRUE)
+  filter(Calories(cume_dist(drinks_grouped$Calories) > 0.25) = TRUE)
+###ANSWER
+drinks_distribution <- drinks_grouped %>%
+  filter(cume_dist(desc(Calories)) > 0.25)
 ```
 
 
