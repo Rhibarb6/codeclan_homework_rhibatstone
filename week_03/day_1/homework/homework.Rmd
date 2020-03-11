@@ -21,6 +21,7 @@ Question 2
 
 ```{r}
 summary_calories <- summarise(drinks_content, mean = mean(Calories), var = var(Calories))
+hist(drinks_content$Calories)
 ```
 
 Question 3

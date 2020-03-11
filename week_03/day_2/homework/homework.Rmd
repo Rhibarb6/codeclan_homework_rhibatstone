@@ -1,0 +1,92 @@
+---
+title: "Homework"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+4 Question 1
+Load in the women_in_gov csv file. Make sure you remove all metadata from the top.
+```{r}
+women_in_gov <- read_csv("data/women_in_gov.csv", skip = 3)
+```
+
+5 Question 2
+Some of the column names contain spaces and numbers. Fix the column names.
+
+```{r}
+women_in_gov <- clean_names(women_in_gov)
+names(women_in_gov)
+```
+
+6 Question 3
+We have some columns in the data that don’t really need to be there. Confirm that the X64, Indicator.Name and Indicator.Code have the same values for all observations. If they do, remove those columns.
+```{r}
+unique(women_in_gov$x64)
+unique(women_in_gov$indicator_code)
+unique(women_in_gov$indicator_name)
+
+wig_remove_col <- women_in_gov %>%
+  select (-c(x64, indicator_code, indicator_name))
+
+```
+
+7 Question 4
+Think back to last week where we talked about wide vs long format. As the data is in wide format, it’s pretty clear to see we have a lot of missing values. Reshape the data from wide to long format, so that for each country the year column becomes a row.
+
+```{r}
+wig_clean <- wig_remove_col %>% 
+  pivot_longer(
+    x1960:x2018,
+    names_to = "year",
+    values_to = "proportion_of_seats"
+  )
+```
+
+
+8 Question 5
+You’ll notice your prop_women column contains missing values. Let’s do a few things. First, let’s count how many missing values you have. Then check how many different missing values you have (e.g. how many unique ones do you have). Then decide how you will deal with them. Will you insert average imputation values, most common imputation values, or use the multiple imputation method? Explain your decision. Then fix the missing values.
+
+```{r}
+na_wig_clean <- wig_clean %>%
+  select(is.na(proportion_of_seats) = T)
+
+
+```
+9 Question 6
+Create a boxplot to see if there are any outliers in the proportion of women.
+```{r}
+
+```
+
+10 Question 7
+Use the outliers package to calculate a zscore for each observation in your data. Mark any of the values in the prop_women column that are more or less than 3 standard deviations above or below the mean as outliers. Add this outlier flag as a new column within the dataset. Create a table that only contains the outliers and have a look at them.
+
+11 Question 8
+Next decide - what will you do with these outliers? Create a table with your newly dealt with outliers.
+
+12 Question 9
+Now you have your clean dataset, let’s do some summarising. Find the top 10 countries with the highest mean proportion of women in government across all the years. Then find the bottom 10.
+
+13 Question 10
+Pick another interesting analysis question of your choosing. Tell us WHY you think it is interesting, how you did it, and what it tells us.
+
+
+
+14 Extension task
+There is another dataset available from the Brazil House of Deputies that we haven’t analysed. This is the deputies_info.csv file.
+
+Complete the following task:
+
+We will be looking for outliers and relationships between the receipt_description variable and the receipt_value variable. Load in the data. Check the variable names, and check for missing values in the variable of interest receipt_value.
+Spend some time visualizing any outliers in the receipt_value column. Does it have a relationship with the receipt_description column?
+Identify which rows in the receipt_value column of data_v1 dataset are outliers. Try plotting them or looking through just the outliers.
+Calculate the outlier zcores for the receipt_value column. Replot the data, and then decide what you want to do with the outliers. Finally, which parties have the highest dodgy claims? What do they claim the most on?
+```{r}
+deputies <- read_csv("data/deputies_info.csv")
+
+count(is.na(deputies$receipt_value))
+```
+
