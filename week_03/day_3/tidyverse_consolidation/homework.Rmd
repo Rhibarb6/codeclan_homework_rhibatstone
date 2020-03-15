@@ -48,13 +48,13 @@ code_clan_tweets %>%
 code_clan_tweets %>% 
   select(text) %>%
 ```
-
+7
 
 ```{r}
 code_clan_tweets %>% 
   summarise(mean(str_length(text[1:234])))
 ```
-7
+
 ```{r}
 code_clan_info <- read_csv("code_clan_info.csv")
 view(code_clan_info)
@@ -70,8 +70,9 @@ joined_data <- code_clan_tweets %>%
 ```{r}
 codeclan_hashtags <- joined_data %>% 
   select(tweet_id, hashtags) %>% 
-  ?filter(hashtags == NULL)
-  
+  mutate(lowcase_hashtags = str_to_lower(hashtags)) %>% 
+  select(-hashtags) %>% 
+  drop.na(lowcase_hashtag)
   
 ```
 
