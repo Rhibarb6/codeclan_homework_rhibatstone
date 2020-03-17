@@ -1,0 +1,61 @@
+---
+title: "Decathalon Data Analysis"
+author: "Rhi"
+date: "16/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+```{r}
+decathalon_cleaned <- read_csv(here("clean_data/decathalon_cleaned"))
+```
+1
+```{r}
+decathalon_cleaned %>% 
+  filter(type == "long_jump") %>% 
+  top_n(1)
+```
+
+2
+```{r}
+decathalon_cleaned %>% 
+  group_by(competition) %>% 
+  filter(type == "x100m") %>% 
+  summarise(average_time = mean(value))
+```
+
+3
+```{r}
+decathalon_cleaned %>% 
+  group_by(surnames) %>% 
+  summarise(total_points = sum(points)) %>% 
+  top_n(1, total_points)
+  
+```
+
+4 What was the shot-put scores for the top three competitors in each competition?
+```{r}
+decathalon_cleaned %>% 
+  group_by(competition) %>% 
+  filter(type == "shot_put") %>% 
+  top_n(3, points)
+  
+```
+
+5
+What was the average points for competitors who ran the 400m in less than 50 seconds vs. those than ran 400m in more than 50 seconds
+```{r}
+decathalon_cleaned %>% 
+  filter(type == "x400m") %>% 
+  group_by(value > 50) %>% 
+  summarise(average_points = median(points))
+```
+

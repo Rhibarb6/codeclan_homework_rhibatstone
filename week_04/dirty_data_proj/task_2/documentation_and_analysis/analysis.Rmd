@@ -1,0 +1,68 @@
+---
+title: "Analysis"
+author: "Rhi"
+date: "17/03/2020"
+output: html_document
+---
+
+## Library's
+```{r}
+library(tidyverse)
+library(here)
+```
+## Reading in the clean data
+```{r}
+cakes_data <- read_csv(here("clean_data/cakes_clean.csv"))
+```
+
+Which cake has the most cocoa in it?
+```{r}
+cakes_data %>% 
+  filter(ingredient == "Cocoa") %>% 
+  top_n(1, amount)
+```
+
+For sponge cake, how many cups of ingredients are used in total?
+```{r}
+cakes_data %>% 
+  group_by(cake) %>% 
+  filter(
+    cake == "Sponge", 
+    measure == "cup"
+    ) %>% 
+  summarise(cups_of_ingredients = sum(amount))
+```
+```{r}
+cakes_data %>% 
+  group_by(measure) %>% 
+  mutate(
+    cake = cake == "Sponge", 
+    measure == "cup"
+    ) %>%
+  summarise(total_cups = sum(amount))
+```
+
+How many ingredients are measured in teaspoons?
+```{r}
+cakes_data %>%
+  filter(measure == "teaspoon") %>% 
+  summarise(measured_in_tsps = n_distinct(ingredient))
+  
+```
+
+Which cake has the most unique ingredients?
+```{r}
+cakes_data %>%
+  group_by(cake) %>%
+  summarise(count = n_distinct(ingredient)) %>% 
+  top_n(1, count)
+```
+
+Which ingredients are used only once?
+```{r}
+cakes_data %>% 
+  count(ingredient, name = "count") %>% 
+  filter(count == 1)
+
+```
+
