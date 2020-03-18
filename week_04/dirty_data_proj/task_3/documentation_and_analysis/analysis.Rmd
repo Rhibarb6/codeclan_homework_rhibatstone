@@ -1,0 +1,49 @@
+---
+title: "Analysis"
+author: "Rhi"
+date: "17/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+```{r}
+bird_data <- read_csv(here("clean_data/bird_data_clean"))
+```
+
+Which bird had the most individual sightings?
+```{r}
+bird_data %>% 
+  group_by(species_abbreviation) %>%
+  summarise(total = sum(count)) %>% 
+  arrange(desc(total))
+```
+
+Which bird had the highest total count?
+```{r}
+bird_data %>% 
+  top_n(1, count)
+```
+
+Which bird had the highest total count above a latitude of -30?
+```{r}
+
+```
+
+How many different types of birds were only ever seen in groups of 1?
+```{r}
+
+```
+
+How many penguins were seen? (Hint: there are many types of penguin)
+```{r}
+
+```
+

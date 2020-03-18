@@ -16,7 +16,7 @@ ship_data <- clean_names(ship_data)
 bird_data <- bird_data %>% 
   select(record_id, 
          species_common_name_taxon_age_sex_plumage_phase, 
-         species_scientific_name_taxon_age_sex_plumage_phase, 
+         species_scientific_name_taxon_age_sex_plumage_phase, species_abbreviation,
          count)
 
 ship_data <- ship_data %>% 
