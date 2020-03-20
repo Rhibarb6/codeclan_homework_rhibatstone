@@ -12,23 +12,30 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(here)
+library(stringi)
 ```
 
 ```{r}
-bird_data <- read_csv(here("clean_data/bird_data_clean"))
+
+bird_data <- read_csv(here("clean_data/bird_data_clean.csv"))
 ```
 
 Which bird had the most individual sightings?
 ```{r}
 bird_data %>% 
-  group_by(species_abbreviation) %>%
-  summarise(total = sum(count)) %>% 
-  arrange(desc(total))
+  select(common_name, 
+           scientific_name,
+           abbreviated_name) %>% 
+  group_by(common_name) %>%
+  tally(sort = T, name = "indiv_sightings") %>% 
+  top_n(1, indiv_sightings) 
 ```
 
 Which bird had the highest total count?
 ```{r}
 bird_data %>% 
+  group_by(common_name) %>% 
+  summarise(sum(count)) %>% 
   top_n(1, count)
 ```
 
@@ -39,11 +46,15 @@ Which bird had the highest total count above a latitude of -30?
 
 How many different types of birds were only ever seen in groups of 1?
 ```{r}
-
+bird_data %>% 
+  group_by(common_name) %>% 
+  filter_if(sum(count) == 1) %>% 
+  nrow()
 ```
 
 How many penguins were seen? (Hint: there are many types of penguin)
 ```{r}
-
+penguins <- str_detect(bird_data$common_name, "penguin")
+countid(penguins == T)
 ```
 
