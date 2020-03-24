@@ -1,0 +1,61 @@
+---
+title: "Homework"
+output: html_notebook
+---
+
+Question 1.
+
+
+```{r}
+#Libraries
+library(tidyverse)
+library(CodeClanData)
+#Check data
+head(backpack)
+```
+
+Question 2.
+
+```{r}
+ggplot(backpack) +
+  geom_histogram(aes(x = backpack_weight, fill = "orange"), col = "white") +
+  labs(
+    x = "Backpack Weight",
+    y = "Count"
+  )
+```
+
+
+Question 3.
+
+```{r}
+ggplot(backpack) +
+  geom_histogram(aes(x = backpack_weight, fill = sex), col = "white") +
+  facet_wrap(~ sex)
+```
+
+
+Question 4.
+
+```{r}
+ggplot(backpack) +
+  geom_line(aes(x = body_weight, y = backpack_weight))
+```
+There is no relationship - can be seen from this line graph which shows no trend and consistently peaks and troughs
+
+Question 5.
+
+```{r}
+ggplot(backpack) +
+  geom_line(aes(x = body_weight, y = backpack_weight)) +
+  facet_wrap(~ sex)
+```
+
+
+Question 6.
+
+```{r}
+
+ggplot(backpack) +
+  geom_bar(aes(x = back_problems, yposition = "fill"))
+```
