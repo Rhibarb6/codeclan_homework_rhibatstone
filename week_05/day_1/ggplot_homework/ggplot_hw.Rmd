@@ -39,7 +39,8 @@ Question 4.
 
 ```{r}
 ggplot(backpack) +
-  geom_line(aes(x = body_weight, y = backpack_weight))
+  (aes(x = body_weight, y = backpack_weight))
+geom_point()
 ```
 There is no relationship - can be seen from this line graph which shows no trend and consistently peaks and troughs
 
@@ -47,7 +48,7 @@ Question 5.
 
 ```{r}
 ggplot(backpack) +
-  geom_line(aes(x = body_weight, y = backpack_weight)) +
+  geom_point(aes(x = body_weight, y = backpack_weight)) +
   facet_wrap(~ sex)
 ```
 
