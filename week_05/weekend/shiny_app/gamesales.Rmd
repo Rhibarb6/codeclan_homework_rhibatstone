@@ -1,0 +1,20 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(ggplot2)
+library(dplyr)
+library(shiny)
+library(CodeClanData)
+
+game_sales <- game_sales
+```
+
+```{r}
+ game_sales %>% 
+  filter(sales <= 40) %>% 
+      ggplot() +
+      geom_point(aes(y = sales, x = user_score))
+```
+

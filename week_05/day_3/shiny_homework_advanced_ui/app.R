@@ -14,12 +14,15 @@ medals <- unique(olympics_overall_medals$medal)
 
 
 ui <- fluidPage(
+    #Choosing a theme
+    theme = shinytheme("flatly"),
     
-    theme = shinytheme("paper"),
-    
+    #Page title
     titlePanel(tags$h1("Olympic Team Medal Comparison")),
     
+    
     tabsetPanel(
+        # Tab 1 - the selection options
         tabPanel("Slection",
     
             fluidRow(
@@ -27,7 +30,7 @@ ui <- fluidPage(
                 column(4,
                     selectInput(
                         "season",
-                        "Which season?",
+                        tags$h3(tags$b(tags$i("Which season?"))),
                         seasons
                     )
                 ),
@@ -35,20 +38,21 @@ ui <- fluidPage(
                 column(4,
                     selectInput(
                         "medal",
-                        "Which medal?",
+                        tags$h3(tags$b(tags$i("Which medal?"))),
                         medals
                     )
                 ),
             
                 column(4,
-                    selectInput(
+                    checkboxGroupInput(
                         "team",
-                        "Which team?",
+                        tags$h3(tags$b(tags$i("Which team?"))),
                         teams
                     )
                 ),
             ),
         ),
+        # Tab 2 - the plot output
         tabPanel("Plot",
     
             plotOutput("medal_count_plot")

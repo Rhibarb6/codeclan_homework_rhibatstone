@@ -1,0 +1,21 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+
+```{r}
+conf_data <- read_csv("cleaned_data/conf_dely_clean.csv")
+```
+```{r}
+conf_data %>% 
+  ggplot(aes(x = confidence_bin, y = conf_scale, colour = accuracy)) + 
+  geom_point() +
+  geom_smooth()
+  
+```
+
