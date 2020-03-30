@@ -119,6 +119,8 @@ library(CodeClanData)
 
 
 ui <- fluidPage(
+  
+
   fluidRow(
     column(4,
            checkboxGroupInput("publisher",
@@ -149,19 +151,19 @@ server <- function(input, output) {
   
   filtered_data <- eventReactive(input$update,{
     game_sales %>%
-      filter(publisher == input$publisher)
+      filter(publisher == input$publisher) %>% 
+      filter(year_of_release == input$year)
   })
   
   output$sales_barchart <- renderPlot({
-    game_sales %>% 
-    filter(year_of_release == input$year) %>% 
-    ggplot(filtered_data(), cols = "white") +
+    
+    ggplot(filtered_data()) +
       geom_bar(aes(x = genre, fill = publisher))
   })
   
   output$score_barchart <- renderPlot({
     ggplot(filtered_data()) +
-      geom_bar(aes(x = year_of_release, fill = publisher)) 
+      geom_bar(aes(x = name, fill = publisher)) 
   })
 }
 

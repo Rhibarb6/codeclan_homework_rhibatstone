@@ -1,0 +1,135 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(prob)
+library(tidyverse)
+library(gtools)
+```
+
+1.
+```{r}
+total <- rolldie(1) %>% 
+  nrow()
+
+rolldie(1) %>% 
+  filter(X1 == 5) %>% 
+  nrow()/total
+```
+
+2.
+```{r}
+rolldie(3) %>% 
+  nrow()
+```
+
+3.
+```{r}
+s_four_dice <- rolldie(4)
+
+s_four_dice %>% 
+  mutate(rowsum = rowSums(. >= "5"))
+
+s_four_dice %>% 
+  filter(rowsum <= 7)
+```
+
+4.
+
+```{r}
+height_combinations <- permutations(n = 5,
+                                    r = 5,
+                                    repeats.allowed = F
+                                    ) 
+  
+
+1/nrow(height_combinations)
+```
+
+
+5. 
+```{r}
+dice_combinations <- permutations(n = 6,
+                                    r = 6,
+                                    repeats.allowed = T
+                                    )
+dice_combinations %>% 
+  filter(isin(c(6, 5, 4, 3, 2, 1), ordered = T))
+```
+
+6.
+```{r}
+# 13 spades in the 26 black cards 
+# 13/26 = 1/2
+
+cards(jokers = F)
+```
+
+
+7.
+```{r}
+patients <- c("Alice", "Bob", "Carmen", "Dinesh", "Ella", "Fergus", "Gianna", "Henry")
+
+appointments <- permutations(n = 8,
+               r = 5,
+               v = patients,
+               repeats.allowed = F)
+
+appointments %>% 
+  nrow(isin(c("Gianna", "Dinesh")))
+
+
+```
+8. 
+```{r}
+quiz_team <- combinations(n = 8,
+               r = 5,
+               repeats.allowed = F)
+
+nrow(quiz_team)
+```
+
+9.
+
+```{r}
+
+```
+
+10.
+```{r}
+uni <- data.frame(
+  mother_yes = c(32, 22), 
+  mother_no = c(35, 31)
+)
+uni <- cbind(uni, rowSums(uni))
+uni <- rbind(uni, colSums(uni))
+colnames(uni) <- c("mother_yes", "mother_no", "sum")
+rownames(uni) <- c("son_yes", "son_no", "sum")
+uni
+```
+```{r}
+total <- uni$sum[3]
+
+prob_son_yes <- uni %>%
+  filter(uni == "son_yes") %>%
+  mutate(prob = nrow() / total) %>%
+  select(prob)
+
+prob_son_yes
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
