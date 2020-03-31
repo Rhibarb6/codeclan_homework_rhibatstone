@@ -75,6 +75,7 @@ appointments <- permutations(n = 8,
                r = 5,
                v = patients,
                repeats.allowed = F)
+nrow(appointments)
 
 appointments %>% 
   nrow(isin(c("Gianna", "Dinesh")))
