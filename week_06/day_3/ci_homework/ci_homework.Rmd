@@ -1,0 +1,56 @@
+---
+title: "Confidence Intervals"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(infer)
+```
+
+```{r}
+ames <- read_csv("ames.csv")
+ames <- ames %>% 
+  clean_names()
+glimpse(ames)
+```
+
+```{r}
+ames %>% 
+  ggplot(aes(lot_area))+
+  geom_histogram(col = "white")
+
+ames %>% 
+  ggplot(aes(y = lot_area))+
+  geom_boxplot() +
+  coord_flip()
+#right skew because of outliers, normal distribution
+```
+
+```{r}
+bootstrap_rep_sample_200 <- ames %>%
+  rep_sample_n(size = 200, replace = TRUE, reps = 10000) %>%
+  group_by(replicate) %>%
+  summarise(
+    mean_tenure = mean(lot_area)
+  ) 
+
+bootstrap_rep_sample_200 %>% 
+  ggplot(aes(mean_tenure)) +
+  geom_histogram(col = "white")
+  
+```
+
+```{r}
+bootstrap_lot_area_ci <- bootstrap_rep_sample_200 %>%
+  get_ci(level = 0.95, type = "percentile")
+bootstrap_lot_area_ci
+```
+
+
+
+
+
+
+

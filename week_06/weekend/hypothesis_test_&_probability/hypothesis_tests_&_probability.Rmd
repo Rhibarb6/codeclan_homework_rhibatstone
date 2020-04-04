@@ -1,0 +1,240 @@
+---
+title: "Homework"
+output: html_notebook
+---
+# Hypothesis tests & probability
+
+```{r}
+library(tidyverse)
+library(infer)
+library(janitor)
+```
+
+### 1.1
+#### 1.1.1
+```{r}
+data(msleep)
+glimpse(msleep)
+head(msleep)
+
+```
+
+```{r}
+msleep %>% 
+  ggplot(aes(sleep_total)) +
+  geom_histogram(col = "white")
+```
+H0: μ(sleep_total) = 7
+Ha: μ(sleep_total) ≠ 7
+α = 0.05 (because the result of this test is unlikely to affect the livelihood of anything/anyone)
+```{r}
+observed_stat <- msleep %>%
+  summarise(mean_sleep_total = mean(sleep_total))
+
+observed_stat
+```
+Calculate and vidualise the null sampling distribution
+```{r}
+null_distribution <- msleep %>%
+  specify(response = sleep_total) %>%
+  hypothesize(null = "point", mu = 7) %>%
+  generate(reps = 10000, type = "bootstrap") %>%
+  calculate(stat = "mean")
+null_distribution %>% 
+  visualise(bins = 30)
+```
+visualise the observed stat
+```{r}
+null_distribution %>%
+  visualise(bins = 30) +
+  shade_p_value(obs_stat = observed_stat$mean_sleep_total, direction = "both")
+```
+we can see that the shaded red areas are very small so it is quite likely to be a significant result. 
+
+Calculate the p-value
+```{r}
+p_value <- null_distribution %>%
+  get_p_value(obs_stat = observed_stat$mean_sleep_total, direction = "both")
+p_value
+```
+Our p-value is 0 which lets us rejuect the null hypothesis and accept the alternative hypothesis that the Jaberwocky's average sleep total of 7hrs is significantly different to the average sleep total of the animals in the msleep data. 
+
+#### 1.1.2
+
+H0: μ(omnivores_sleep_total - herbivores_sleep_total) = 0
+Ha: μ(omnivores_sleep_total - herbivores_sleep_total) > 0
+α = 0.05 (because the result of this test is unlikely to affect the livelihood of anything/anyone)
+
+```{r}
+msleep_carni_herbi <- msleep %>%  
+  filter(vore == "carni" | vore == "herbi")
+
+msleep_carni_herbi
+```
+
+```{r}
+msleep_carni_herbi %>% 
+  ggplot(aes(sleep_total)) +
+  geom_histogram(col = "white")
+```
+
+```{r}
+null_distribution <- msleep_carni_herbi %>% 
+  specify(sleep_total ~ vore) %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 10000, type = "permute") %>% 
+  calculate(stat = "diff in means", order = c("herbi", "carni"))
+```
+
+```{r}
+observed_stat <- msleep_carni_herbi %>% 
+  specify(sleep_total ~ vore) %>%
+  calculate(stat = "diff in means", order = c("herbi", "carni"))
+observed_stat
+```
+
+```{r}
+null_distribution %>%
+  visualise() +
+  shade_p_value(obs_stat = observed_stat, direction = "right")
+```
+
+
+```{r}
+p_value <- null_distribution %>% 
+  get_p_value(obs_stat = observed_stat, direction = "right")
+p_value
+```
+
+This p-value is higher than our alpha of 0.05 so we cannot reject the null hypothesis therefore we do not have sufficient evidence to suggest that herbivores sleep longer than omnivores
+
+
+#### 1.1.3
+
+H0: π(domesticated animals) !> 0.05
+Ha: π(domesticated animals) > 0.05
+α = 0.05 (because the result of this test is unlikely to affect the livelihood of anything/anyone)
+
+```{r}
+msleep <- msleep %>%
+  filter(!is.na(conservation)) %>%
+  mutate(
+    is_domesticated = ifelse(
+      conservation == "domesticated", 
+      "domesticated", 
+      "not domesticated"))
+```
+
+```{r}
+null_distribution <- msleep %>%
+  specify(response = is_domesticated, success = "domesticated") %>% 
+  hypothesize(null = "point", p = 0.05) %>%
+  generate(reps = 10000, type = "simulate") %>%
+  calculate(stat = "prop")
+```
+
+```{r}
+null_distribution %>% 
+  visualise()
+```
+
+```{r}
+observed_stat <- msleep %>% 
+  specify(response = is_domesticated, success = "domesticated") %>% 
+  calculate(stat = "prop")
+
+observed_stat
+```
+
+
+```{r}
+null_distribution %>%
+  visualise() + 
+  shade_p_value(obs_stat = observed_stat, direction = "right")
+```
+
+```{r}
+p_value <- null_distribution %>%
+  get_p_value(obs_stat = observed_stat, direction = "right")
+p_value
+```
+
+### 1.2
+#### 1.2.1
+
+1. Permutation
+
+H0: μ(shop awareness after campaign) -  = 0.4
+  The awareness after the campaign will not have increased significantly from 40%
+  
+Ha: μ(shop awareness after campaign) > 0.4
+  The awareness after the campaign will have increased significantly from 40%
+  
+α: 0.05
+p-value: 0.07
+  Based on our sample, we do not have enough evidence that the mean is statistically significantly greater than the null value.
+  
+
+
+2. Simulate
+
+H0: π(CTR_Test_Group) - π(CTR_Test_Group) = 0
+  The proportion of clicks in the test group will not be significantly different to that of the first group
+
+Ha: π(CTR_Test_Group) - π(CTR_Test_Group) ≠ 0
+  The proportion of clicks on the banner in the test group will be significantly different to that of the first group
+  
+α: 0.01
+p-value: 0.006
+  We found enough evidence in the sample to suggest that the sample proportion is statistically significantly different from the null value.
+  
+  
+3. Bootstrap
+
+not really sure about this one
+
+H0: μ() = 145
+Ha: μ() ≠ 145
+
+α: 0.05
+p-value: 0.55
+  Based on our sample, we do not have enough evidence that the mean is statistically significantly different from the null value.
+
+
+## Extension
+
+```{r}
+transactions <- read_csv("data/online_retail_subset.csv")
+transactions <- clean_names(transactions)
+```
+
+2.5 Association rules
+
+item A - ‘HEART OF WICKER SMALL’ (StockCode 22469)
+```{r}
+item_a <- sum(transactions$stock_code == 22469)
+item_b <- sum(transactions$stock_code == 21110)
+total_transactions <- transactions %>% summarise(n())
+
+sup_a <- item_a / total_transactions
+sup_b <- item_b / total_transactions
+sup_a_b <- (item_a + item_b) / total_transactions
+conf_a_b <- sup_a_b / sup_a
+lift_a_b <- sup_a_b / (sup_a * sup_b)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
