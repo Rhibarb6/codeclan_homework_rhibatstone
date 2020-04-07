@@ -97,6 +97,23 @@ weather %>%
 
 ```
 
+From homework answers: 
+```{r}
+# calculate a rolling window 
+weather_rolling <- weather %>% 
+  group_by_key(origin) %>% 
+  mutate(temp_ma = slide_dbl(temp, ~ mean(., na.rm = TRUE), .size = 720))
+
+# plot the data 
+ggplot(weather_rolling) + 
+  geom_line(aes(x = time_hour, y = temp, group = origin), colour = "grey") + 
+  geom_line(aes(x = time_hour, y = temp_ma, colour = origin), size = 1) + 
+  facet_wrap(~ origin) + 
+  ylab("Temperature") + 
+  xlab("Time")
+```
+
+
 Question 9
 
 Question 10

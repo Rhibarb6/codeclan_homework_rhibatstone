@@ -1,0 +1,153 @@
+---
+title: "Homework"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(lubridate)
+library(tsibble)
+library(tsibbledata)
+library(fable)
+```
+
+```{r}
+nyc_bikes
+names(nyc_bikes)
+```
+Question 1
+```{r}
+nyc_bikes_1 <- nyc_bikes %>% 
+  mutate(year = year(start_time),
+         month = month(start_time),
+         date = date(start_time))
+```
+
+Question 2
+```{r}
+nyc_bikes_1 %>% 
+  index_by(month) %>% 
+  summarise(bike_hire_count = n()) %>% 
+  ggplot(aes(month, bike_hire_count)) +
+  geom_line()
+```
+Shows that the bike hire is seasonal throughout the year, peaking around July/August. This increase likely coincides with the increase in good weather. It gives a general idea of the forecast but it is not very precise. Seeing as the data has multiple bike hires in some days, I would probably only downsample this data to weekly. 
+
+Question 3
+
+```{r}
+nyc_bikes_3 <- nyc_bikes_1 %>% 
+  index_by(date) %>% 
+  summarise(bike_hire_count = n()) 
+
+nyc_bikes_3 %>% 
+  ggplot(aes(date, bike_hire_count)) +
+  geom_line()
+```
+This plot shows us that there is a lot more variability within the months than the monthly plot. The fluctuations varie within each which may be due to weather changes, 
+
+Question 4
+
+```{r}
+nyc_bikes_4 <- nyc_bikes_3 %>% 
+  fill_gaps(bike_hire_count = as.integer(median(bike_hire_count)))
+
+fit <- nyc_bikes_4 %>%
+  model(
+    snaive = SNAIVE(bike_hire_count),
+    mean_model = MEAN(bike_hire_count),
+    arima = ARIMA(bike_hire_count)
+  )
+fit
+```
+question 5
+```{r}
+forecast_4m <- fit %>%
+  fabletools::forecast(h = "4 months")
+
+forecast_4m %>%
+  autoplot(nyc_bikes_4, level = NULL) +
+  ggtitle("Forecasts for Bike Hire Count") +
+  xlab("Month") +
+  guides(colour = guide_legend(title = "Forecast"))
+```
+
+question 6 
+```{r}
+train <- nyc_bikes_4 %>%
+  filter_index("2018-01" ~ "2018-09")
+
+fit_test <- train %>%
+  model(
+    mean_model = MEAN(bike_hire_count),
+    arima = ARIMA(bike_hire_count),
+    snaive = SNAIVE(bike_hire_count))
+
+
+forecast_test <- fit_test %>% 
+  fabletools::forecast(h = 120)
+
+forecast_test %>%
+  autoplot(train, level = NULL) +
+    autolayer(filter_index(nyc_bikes_4, "2018-10" ~ .), color = "black") +
+    ggtitle("Forecasts for monthly bike hire") +
+    xlab("Month") + ylab("Bike Hire") +
+    guides(colour = guide_legend(title = "Forecast"))
+
+
+accuracy_model <- fabletools::accuracy(forecast_test, nyc_bikes_4)
+
+accuracy_model %>% 
+  select(-.type) %>%
+  arrange(RMSE)
+```
+Question 7
+The forecast doesn't appear to be accurate as it clearly does not follow the trend of the data in the model test so none of the models are a good fit for the data. 
+Could potentially ask for more data (I don't really understand the errors enough to test a different model)
+
+Question 8
+
+```{r}
+nyc_bikes_1 %>% 
+  ggplot(aes(x = start_lat, y = start_long, colour = month)) +
+  geom_point() +
+  facet_wrap(~ bike_id)
+```
+Bikes 31681 & 31735 were only used in the first half of the year whereas the otheres were hired more in the 2nd half of the year. 
+
+
+```{r}
+nyc_bikes_1 %>% 
+  ggplot(aes(x = end_lat, y = end_long, colour = month)) +
+  geom_point() +
+  facet_wrap(~ bike_id)
+```
+Very little change which is unsurprising as the bikes were hired and returned in the same day generally..? 
+
+Question 9
+```{r}
+library(leaflet)
+```
+```{r}
+
+bike_hire_map <- leaflet(nyc_bikes) %>%
+  addTiles() %>% 
+  addMarkers(lng = ~ start_long, lat = ~start_lat,
+             clusterOptions = markerClusterOptions()) 
+
+bike_hire_map
+
+```
+
+Question 10
+```{r}
+bike_hire_map_lines <- leaflet(nyc_bikes) %>%
+  addTiles() %>% 
+  addMarkers(lng = ~ start_long, lat = ~start_lat,
+             clusterOptions = markerClusterOptions()
+             ) %>% 
+  addPolylines(lng = ~ end_long, lat = ~end_lat)
+# Need a for loop to only show the line for the selected pin i think.. but it's too late at night
+
+bike_hire_map_lines
+```
+
