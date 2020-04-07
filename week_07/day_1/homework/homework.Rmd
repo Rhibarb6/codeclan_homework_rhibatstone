@@ -68,11 +68,11 @@ Question 6
 head(weather)
 
 weather <- weather %>% 
-  select(temp, humid, precip, time_hour)
+  select(origin, temp, humid, precip, time_hour)
 
 #key is origin?
 #Index is  time_hour
-#Hourly data of 2 months in 2013
+#Hourly data daily
 ```
 
 Question 7
@@ -80,7 +80,7 @@ Question 7
 
 ```{r}
 weather <- weather %>% 
-  as_tsibble(key = temp, index = time_hour)
+  as_tsibble(key = origin, index = time_hour)
 ```
 
 
@@ -88,12 +88,12 @@ Question 8
 
 ```{r}
 weather <- weather %>% 
-  mutate(year = year(year),
-         month = month(month))
+  mutate(year = year(time_hour),
+         month = month(time_hour))
 
 weather %>%
   ggplot(aes(time_hour, temp)) +
-  geom_line()
+  geom_line() 
 
 ```
 
