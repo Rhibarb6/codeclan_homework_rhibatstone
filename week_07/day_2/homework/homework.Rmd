@@ -28,7 +28,8 @@ nyc_bikes_1 %>%
   index_by(month) %>% 
   summarise(bike_hire_count = n()) %>% 
   ggplot(aes(month, bike_hire_count)) +
-  geom_line()
+  geom_line() +
+  xlab("Date")
 ```
 Shows that the bike hire is seasonal throughout the year, peaking around July/August. This increase likely coincides with the increase in good weather. It gives a general idea of the forecast but it is not very precise. Seeing as the data has multiple bike hires in some days, I would probably only downsample this data to weekly. 
 
@@ -43,7 +44,7 @@ nyc_bikes_3 %>%
   ggplot(aes(date, bike_hire_count)) +
   geom_line()
 ```
-This plot shows us that there is a lot more variability within the months than the monthly plot. The fluctuations varie within each which may be due to weather changes, 
+This plot shows us that there is a lot more variability within the months than the monthly plot. The fluctuations vary within each which may be due to weather changes, 
 
 Question 4
 

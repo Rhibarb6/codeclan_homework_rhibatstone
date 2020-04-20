@@ -12,10 +12,8 @@ library(readr)
 conf_data <- read_csv("cleaned_data/conf_dely_clean.csv")
 ```
 ```{r}
-conf_data %>% 
-  ggplot(aes(x = confidence_bin, y = conf_scale, colour = accuracy)) + 
-  geom_point() +
-  geom_smooth()
-  
+false_id <- conf_data %>% 
+  group_by(condition) %>% 
+  group_by()
 ```
 

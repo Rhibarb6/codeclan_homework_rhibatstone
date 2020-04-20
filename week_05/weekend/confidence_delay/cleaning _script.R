@@ -25,7 +25,6 @@ public_names <- read_csv("raw_data/Confidence+Delay+-+Rhi_March+28,+2020_03.55.z
 public <- read_csv("raw_data/Confidence+Delay+-+Rhi_March+28,+2020_03.55.zip", 
                    col_names = public_names,  
                    skip = 3) %>% 
-                   clean_names()
 
 #remove these variables
 rm(public_names)
@@ -261,11 +260,28 @@ combined_clean <- combined_clean %>%
            ifelse(conf_scale <= 50,
                   "low",
                   ifelse(conf_scale <= 80, 
-                         "medium",
-                         ifelse(conf_scale <= 100, 
-                                "high"))))
+                         "medium", "high")))
 
 
+# Creating response variable ----------------------------------------------
+# -3= Filler ID (TA)
+# -2= Innocent ID (TA)
+# -1= Incorrect Rejection (TP)
+# 0= Filler ID (TP)
+# 1= Correct ID (TP)
+# 2= Correct rejection (TA)
+
+combined_clean <- combined_clean %>% 
+  mutate(response = 
+           ifelse(accuracy == "correct" & lineup_response == 7, "correct rejection",
+                  ifelse(accuracy == "correct" & lineup_response != 7, "correct identification",
+                         ifelse(accuracy == "incorrect" & lineup_response == 7, "incorrect rejection",
+                                ifelse(accuracy == "incorrect" & lineup == video, "tp filler id", "ta filler id"
+                                       )
+                                )
+                         )
+                  )
+         )
 
 
 # write clean data to csv -------------------------------------------------
