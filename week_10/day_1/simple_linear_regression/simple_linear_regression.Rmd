@@ -1,0 +1,41 @@
+---
+title: "Simple Linear Regression Homework"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(ggfortify)
+
+project <- read_csv("project_management.csv")
+glimpse(project)
+```
+
+```{r}
+plot(project$estimated_length, project$actual_length) + 
+  text(project$estimated_length, project$actual_length, labels = seq(nrow(project)), cex = 0.7, pos = 2)
+
+```
+5 is likley an influential outlier, whereas 18 is likely a non-influential outlier
+
+```{r}
+model <- lm(estimated_length ~ actual_length, data = project)
+model
+
+autoplot(model, which = 4)
+```
+I would say that this plot confirms my identification of 5 being an influenctial outlier
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+

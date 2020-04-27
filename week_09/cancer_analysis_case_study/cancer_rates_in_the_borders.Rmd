@@ -1,0 +1,153 @@
+---
+title: "Cancer Rates in the Borders"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source("analysis.R")
+
+```
+## Average incidences by cancer type
+We can see that the most common cancer site is non-melanoma skin cancer 
+```{r, echo=FALSE}
+
+avg_cancer_incidences
+```
+
+The plot below shows average number of incidences for each cancer type across all years. It is clear that non-melanoma skin cancer is the most prevalent cancer type. Removed "all cancer type" category as this gives a clearer picture of the average rates of individual cancer types. 
+```{r avg_incidences_bar, echo=FALSE}
+avg_cancer_incidences %>% 
+  filter(cancer_site != "All cancer types") %>% 
+  arrange(
+    median_incidences
+    ) %>% 
+  ggplot(
+    aes(cancer_site, 
+        median_incidences)
+    ) +
+  geom_col(
+    col = "white", 
+    fill = "magenta") +
+  labs(
+    x = "Cancer Type",
+    y = "Average Incidences",
+    title = "Average incidences by cancer type"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 90)) +
+  scale_x_discrete(
+    label = function(x) stringr::str_trunc(x, 16)
+    )
+```
+
+
+```{r, echo=FALSE}
+# avg_cancer_incidences %>% 
+#   filter(
+#     cancer_site != "All cancer types"
+#     ) %>%
+#   treemap(
+#     index = "cancer_site",
+#     vSize = "median_incidences",
+#      type = "index",
+#     title = "Average incidences by cancer type"
+#     )
+```
+
+
+```{r avg_incidences_bubble_plot, echo=FALSE}
+# avg_cancer_incidences %>% 
+#   ggplot(
+#     aes(median_incidences, 
+#         cancer_site, 
+#         colour = cancer_site, 
+#         size = median_incidences)) +
+#   geom_point(
+#     show.legend = F
+#     ) +
+#   scale_y_discrete(
+#     label = function(x) stringr::str_trunc(x, 15)
+#     )
+```
+
+
+## Total yearly cancer incidents from 1993 to 2017
+Looking at total yearly data lets us see that the total number of incidences of any kind of cancer and been faily consistently rising since 1993.
+
+```{r total_cases, echo=FALSE}
+general_data %>% 
+  ggplot(
+    aes(year, 
+        incidences_all_ages)) +
+   geom_line(
+    colour = "magenta") +
+  geom_smooth() +
+  labs(
+    x = "Year",
+    y = "Number of incidences",
+    title = "Total incidences each year"
+  ) +
+  scale_x_continuous(
+    breaks = c(1995, 
+               2000, 
+               2005, 
+               2010, 
+               2015)) +
+  theme(
+    axis.text.x = element_text(size=10, 
+                               angle=45)
+    )
+```
+
+## New incidences of cancer from 1993 to 2017
+When we look at the crude rate of cancer incidences, that is the total new cases each year, we can see that the pattern is pretty similar to the total cases. It steadly increases with seasonal peaks every two years. 
+
+```{r crude_rate, echo=FALSE}
+general_data %>% 
+  ggplot(
+    aes(year, crude_rate)) +
+  geom_line(
+    colour = "magenta") +
+  geom_smooth() +
+  labs(
+    x = "Year",
+    y = "Crude Rate",
+    title = "Number of new cases each year"
+  ) +
+  scale_x_continuous(
+    breaks = c(1995, 
+               2000, 
+               2005, 
+               2010, 
+               2015)) +
+  theme(
+    axis.text.x = element_text(size=10, 
+                               angle=45)
+    )
+```
+
+```{r}
+general_data %>% 
+  ggplot(
+    aes(year, standardised_incidence_ratio)) +
+  geom_line(
+    colour = "magenta") +
+  geom_smooth() +
+  labs(
+    x = "Year",
+    y = "Standardised incidence ratio",
+    title = "..."
+  ) +
+  scale_x_continuous(
+    breaks = c(1995, 
+               2000, 
+               2005, 
+               2010, 
+               2015)) +
+  theme(
+    axis.text.x = element_text(size=10, 
+                               angle=45)
+    )
+```
+
