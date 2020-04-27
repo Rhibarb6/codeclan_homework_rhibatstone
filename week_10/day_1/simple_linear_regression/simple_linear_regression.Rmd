@@ -28,6 +28,7 @@ I would say that this plot confirms my identification of 5 being an influenctial
 
 ```{r}
 
+plot(project$estimated_length, project$actual_length)
 ```
 
 
