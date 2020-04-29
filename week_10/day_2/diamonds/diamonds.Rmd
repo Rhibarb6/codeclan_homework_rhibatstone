@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
 output: html_notebook
+editor_options: 
+  chunk_output_type: console
 ---
 ```{r}
 library(tidyverse)
@@ -64,7 +66,7 @@ summary(model)
 ```
 
 ```{r}
-model2 <- lm(log(price) ~ log(carat), data = diamonds_dropped)
+model2 <- lm(price) ~ log(carat), data = diamonds_dropped)
 
 summary(model2)
 ```

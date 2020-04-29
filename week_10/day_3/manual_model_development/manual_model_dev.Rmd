@@ -1,0 +1,38 @@
+---
+title: "Homework - Manual Model Development"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+house_prices <- read_csv("kc_house_data.csv")
+```
+
+```{r}
+house_prices %>% 
+  summary()
+
+```
+
+```{r}
+# removing uneccary variables after checking them out 
+# Did not remove date as it might affect the house price? 
+# Converted waterfront to logical
+# Converted renovated to a logical variable
+# Grade it interval as it is a scale
+# condition is ordinal 
+house_prices_tidy <- house_prices %>% 
+  mutate(renovated = ifelse(yr_renovated == 0, 0, 1), waterfront = as.logical(waterfront)) %>% 
+  select(-c("id", "sqft_living15", "sqft_lot15", "zipcode", "yr_renovated")) 
+
+```
+
+```{r}
+# Could not work out how to use alias? 
+house_prices_tidy %>% 
+  alias("price" ~ .)
+```
+
