@@ -76,17 +76,17 @@ anova(model2, model3)
 # The difference is significant so will continue to use region & date
 ```
 
+
+
 ```{r}
-avocado %>% 
-  #select(-region) %>% 
-  select_if(!is.numeric) %>% 
-  ggpairs()
+model4 <- lm(average_price  ~ date + region + type, data = avocado_tidy)
+summary(model4)
 ```
 
 ```{r}
-
+par(mfrow = c(2, 2))
+plot(model4)
 ```
-
 
 
 ```{r}
@@ -110,4 +110,9 @@ plot(lm_avo_tidy)
 
 
 
-
+```{r}
+avocado %>% 
+  #select(-region) %>% 
+  select_if(!is.numeric) %>% 
+  ggpairs()
+```
