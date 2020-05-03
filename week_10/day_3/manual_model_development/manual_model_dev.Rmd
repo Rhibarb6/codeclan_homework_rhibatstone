@@ -5,6 +5,7 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(GGally)
 ```
 
 ```{r}
@@ -19,20 +20,33 @@ house_prices %>%
 
 ```{r}
 # removing uneccary variables after checking them out 
-# Did not remove date as it might affect the house price? 
-# Converted waterfront to logical
 # Converted renovated to a logical variable
 # Grade it interval as it is a scale
 # condition is ordinal 
 house_prices_tidy <- house_prices %>% 
-  mutate(renovated = ifelse(yr_renovated == 0, 0, 1), waterfront = as.logical(waterfront)) %>% 
-  select(-c("id", "sqft_living15", "sqft_lot15", "zipcode", "yr_renovated")) 
+  mutate(renovated = ifelse(yr_renovated == 0, 0, 1)) %>% 
+  select(-c("id", "date", "sqft_living15", "sqft_lot15", "zipcode", "yr_renovated")) 
 
 ```
 
 ```{r}
-# Could not work out how to use alias? 
+alias(price ~ ., data = house_prices_tidy)
+# sqft_basement is an aliased coeficiant (from sqft_living & sqft_above) so I remvoed it
+
+house_prices_tidy <- house_prices_tidy %>% 
+  select(-sqft_basement)
+```
+
+```{r, warning = F, message F}
 house_prices_tidy %>% 
-  alias("price" ~ .)
+  ggpairs()
+```
+```{r}
+model1 <- lm(price ~ lat + long, data = house_prices_tidy)
+summary(model1)
+par(mfrow = c(2, 2)) 
+
+# plot
+plot(model1)
 ```
 

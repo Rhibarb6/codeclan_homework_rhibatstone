@@ -1,0 +1,51 @@
+---
+title: "Homework Quiz"
+author: "Rhi"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1
+  Likely overfitting because all the children with have a similar DOB as they are all 6yr olds. Additionally, 
+
+2
+  AIC score of 33,559 as the lower AIC score is better
+
+I have two models, the first with: r-squared: 0.44, adjusted r-squared: 0.43. The second with: r-squared: 0.47, adjusted r-squared: 0.41. Which one should I use?
+
+  Should use the first as it has a higher adjusted r-squared despite having a lower r-squared. Meaning that the additional variables in the second model do not enhance the model.
+1  No, because the 
+
+
+1
+  You split the data into n folds, then make a model with the data n times using a different fold as the test set and the rest as the training set each time. 
+
+What is a validation set? When do you need one?
+  This is an additional subset of data that is not used in test or training and is only used once a final model has been chosen in order to avoid overfitting the data.
+
+Describe how backwards selection works.
+
+
+Describe how best subset selection works.
+
+It is estimated on 5% of model projects end up being deployed. What actions can you take to maximise the likelihood of your model being deployed?
+
+What metric could you use to confirm that the recent population is similar to the development population?
+
+How is the Population Stability Index defined? What does this mean in words?
+
+Above what PSI value might we need to start to consider rebuilding or recalibrating the model
+
+What are the common errors that can crop up when implementing a model?
+
+After performance monitoring, if we find that the discrimination is still satisfactory but the accuracy has deteriorated, what is the recommended action?
+
+Why is it important to have a unique model identifier for each model?
+
+Why is it important to document the modelling rationale and approach?
+```{r}
+
+```
+

@@ -1,0 +1,113 @@
+---
+title: "Model Building"
+output: html_notebook
+---
+
+
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(readr)
+library(GGally)
+library(janitor)
+```
+
+```{r, warning = FALSE, message = FALSE}
+#reading in csv, cleaning names
+avocado <- read_csv("data/avocado.csv") %>% 
+  clean_names() %>% 
+  rename(
+    "small" = x4046,
+    "medium" = x4225,
+    "large" = x4770
+    )
+```
+
+
+```{r}
+summary(avocado)   
+```
+
+```{r}
+alias(average_price ~ ., data = avocado)
+# No aliases
+```
+
+
+```{r}
+#testing to see if date or year is better
+model1 <- lm(
+  average_price ~ year, 
+  data = avocado)
+summary(model1)
+
+model2 <- lm(
+  average_price ~ date, 
+  data = avocado)
+summary(model2)
+```
+
+
+```{r}
+# Date has a better adjusted r squared, so testing to see if the difference between these models is signiticant. 
+anova(model1, model2)
+```
+```{r}
+#The difference is not significant so I will drop year as date has a better r-squared value. 
+#Dropping x1 as it is just a row identifier
+
+avocado_tidy <- avocado %>% 
+  select(-c("x1", "year", ends_with("bags")))
+```
+
+```{r, message = FALSE, warning = FALSE}
+# Dropped region because it had too many categories to see what the highest coeficient is without it 
+avocado_tidy %>% 
+  select(-region) %>%
+  ggpairs()
+```
+```{r}
+# Date is the highest variable with average price , everthing else is very low. So will try region with date
+model3 <- lm(average_price ~ date + region, data = avocado_tidy)
+summary(model3)
+```
+```{r}
+anova(model2, model3)
+# The difference is significant so will continue to use region & date
+```
+
+```{r}
+avocado %>% 
+  #select(-region) %>% 
+  select_if(!is.numeric) %>% 
+  ggpairs()
+```
+
+```{r}
+
+```
+
+
+
+```{r}
+anova(model1, model2)
+
+
+
+```
+
+
+```{r}
+glimpse(avocado)
+
+lm_avo <- lm(average_price ~ ., data = avocado)
+lm_avo_tidy <- lm(average_price ~ ., data = avocado_tidy)
+
+par(mfrow = c(2, 2))
+plot(lm_avo)
+plot(lm_avo_tidy)
+```
+
+
+
+

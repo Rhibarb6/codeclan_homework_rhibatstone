@@ -1751,26 +1751,20 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbmBgYCJ9 -->
-<pre class="r"><code>library(tidyverse)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShHR2FsbHkpXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(GGally)
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxuXHUwMDFiWzM3beKUgOKUgCBcdTAwMWJbMW1BdHRhY2hpbmcgcGFja2FnZXNcdTAwMWJbMjJtIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2UgMS4zLjAg4pSA4pSAXHUwMDFiWzM5bVxuXHUwMDFiWzM3bVx1MDAxYlszMm3inJNcdTAwMWJbMzdtIFx1MDAxYlszNG1nZ3Bsb3QyXHUwMDFiWzM3bSAzLjMuMCAgICAgXHUwMDFiWzMybeKck1x1MDAxYlszN20gXHUwMDFiWzM0bXB1cnJyICBcdTAwMWJbMzdtIDAuMy40XG5cdTAwMWJbMzJt4pyTXHUwMDFiWzM3bSBcdTAwMWJbMzRtdGliYmxlIFx1MDAxYlszN20gMy4wLjEgICAgIFx1MDAxYlszMm3inJNcdTAwMWJbMzdtIFx1MDAxYlszNG1kcGx5ciAgXHUwMDFiWzM3bSAwLjguNVxuXHUwMDFiWzMybeKck1x1MDAxYlszN20gXHUwMDFiWzM0bXRpZHlyICBcdTAwMWJbMzdtIDEuMC4yICAgICBcdTAwMWJbMzJt4pyTXHUwMDFiWzM3bSBcdTAwMWJbMzRtc3RyaW5nclx1MDAxYlszN20gMS40LjBcblx1MDAxYlszMm3inJNcdTAwMWJbMzdtIFx1MDAxYlszNG1yZWFkciAgXHUwMDFiWzM3bSAxLjMuMSAgICAgXHUwMDFiWzMybeKck1x1MDAxYlszN20gXHUwMDFiWzM0bWZvcmNhdHNcdTAwMWJbMzdtIDAuNS4wXHUwMDFiWzM5bVxucGFja2FnZSDigJh0aWJibGXigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiAzLjYuMnBhY2thZ2Ug4oCYcHVycnLigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiAzLjYuMlx1MDAxYlszN23ilIDilIAgXHUwMDFiWzFtQ29uZmxpY3RzXHUwMDFiWzIybSDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxuXHUwMDFiWzMxbXhcdTAwMWJbMzdtIFx1MDAxYlszNG1kcGx5clx1MDAxYlszN206Olx1MDAxYlszMm1maWx0ZXIoKVx1MDAxYlszN20gbWFza3MgXHUwMDFiWzM0bXN0YXRzXHUwMDFiWzM3bTo6ZmlsdGVyKClcblx1MDAxYlszMW14XHUwMDFiWzM3bSBcdTAwMWJbMzRtZHBseXJcdTAwMWJbMzdtOjpcdTAwMWJbMzJtbGFnKClcdTAwMWJbMzdtICAgIG1hc2tzIFx1MDAxYlszNG1zdGF0c1x1MDAxYlszN206OmxhZygpXHUwMDFiWzM5bVxuIn0= -->
-<pre><code>Registered S3 method overwritten by 'dplyr':
-  method           from
-  print.rowwise_df     
-Registered S3 methods overwritten by 'dbplyr':
-  method         from
-  print.tbl_lazy     
-  print.tbl_sql      
-[37m── [1mAttaching packages[22m ────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──[39m
-[37m[32m✓[37m [34mggplot2[37m 3.3.0     [32m✓[37m [34mpurrr  [37m 0.3.4
-[32m✓[37m [34mtibble [37m 3.0.1     [32m✓[37m [34mdplyr  [37m 0.8.5
-[32m✓[37m [34mtidyr  [37m 1.0.2     [32m✓[37m [34mstringr[37m 1.4.0
-[32m✓[37m [34mreadr  [37m 1.3.1     [32m✓[37m [34mforcats[37m 0.5.0[39m
-package ‘tibble’ was built under R version 3.6.2package ‘purrr’ was built under R version 3.6.2[37m── [1mConflicts[22m ───────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-[31mx[37m [34mdplyr[37m::[32mfilter()[37m masks [34mstats[37m::filter()
-[31mx[37m [34mdplyr[37m::[32mlag()[37m    masks [34mstats[37m::lag()[39m</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ0dHYWxseSc6XG4gIG1ldGhvZCBmcm9tICAgXG4gICsuZ2cgICBnZ3Bsb3QyXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDigJhHR2FsbHnigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpkcGx5cuKAmTpcblxuICAgIG5hc2FcbiJ9 -->
+<pre><code>Registered S3 method overwritten by 'GGally':
+  method from   
+  +.gg   ggplot2
+
+Attaching package: ‘GGally’
+
+The following object is masked from ‘package:dplyr’:
+
+    nasa</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1832,7 +1826,7 @@ See spec(...) for full column specifications.</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmluZyB1bmVjY2FyeSB2YXJpYWJsZXMgYWZ0ZXIgY2hlY2tpbmcgdGhlbSBvdXQgXG4jIERpZCBub3QgcmVtb3ZlIGRhdGUgYXMgaXQgbWlnaHQgYWZmZWN0IHRoZSBob3VzZSBwcmljZT8gXG4jIENvbnZlcnRlZCB3YXRlcmZyb250IHRvIGxvZ2ljYWxcbiMgQ29udmVydGVkIHJlbm92YXRlZCB0byBhIGxvZ2ljYWwgdmFyaWFibGVcbiMgR3JhZGUgaXQgaW50ZXJ2YWwgYXMgaXQgaXMgYSBzY2FsZVxuIyBjb25kaXRpb24gaXMgb3JkaW5hbCBcbmhvdXNlX3ByaWNlc190aWR5IDwtIGhvdXNlX3ByaWNlcyAlPiUgXG4gIG11dGF0ZShyZW5vdmF0ZWQgPSBpZmVsc2UoeXJfcmVub3ZhdGVkID09IDAsIDAsIDEpLCB3YXRlcmZyb250ID0gYXMubG9naWNhbCh3YXRlcmZyb250KSkgJT4lIFxuICBzZWxlY3QoLWMoXCJpZFwiLCBcInNxZnRfbGl2aW5nMTVcIiwgXCJzcWZ0X2xvdDE1XCIsIFwiemlwY29kZVwiLCBcInlyX3Jlbm92YXRlZFwiKSkgXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmluZyB1bmVjY2FyeSB2YXJpYWJsZXMgYWZ0ZXIgY2hlY2tpbmcgdGhlbSBvdXQgXG4jIERpZCBub3QgcmVtb3ZlIGRhdGUgYXMgaXQgbWlnaHQgYWZmZWN0IHRoZSBob3VzZSBwcmljZT8gXG4jIENvbnZlcnRlZCB3YXRlcmZyb250IHRvIGxvZ2ljYWxcbiMgQ29udmVydGVkIHJlbm92YXRlZCB0byBhIGxvZ2ljYWwgdmFyaWFibGVcbiMgR3JhZGUgaXQgaW50ZXJ2YWwgYXMgaXQgaXMgYSBzY2FsZVxuIyBjb25kaXRpb24gaXMgb3JkaW5hbCBcbmhvdXNlX3ByaWNlc190aWR5IDwtIGhvdXNlX3ByaWNlcyAlPiUgXG4gIG11dGF0ZShyZW5vdmF0ZWQgPSBpZmVsc2UoeXJfcmVub3ZhdGVkID09IDAsIDAsIDEpKSAlPiUgXG4gIHNlbGVjdCgtYyhcImlkXCIsIFwiZGF0ZVwiLCBcInNxZnRfbGl2aW5nMTVcIiwgXCJzcWZ0X2xvdDE1XCIsIFwiemlwY29kZVwiLCBcInlyX3Jlbm92YXRlZFwiKSkgXG5cbmBgYCJ9 -->
 <pre class="r"><code># removing uneccary variables after checking them out 
 # Did not remove date as it might affect the house price? 
 # Converted waterfront to logical
@@ -1840,27 +1834,58 @@ See spec(...) for full column specifications.</code></pre>
 # Grade it interval as it is a scale
 # condition is ordinal 
 house_prices_tidy &lt;- house_prices %&gt;% 
-  mutate(renovated = ifelse(yr_renovated == 0, 0, 1), waterfront = as.logical(waterfront)) %&gt;% 
-  select(-c(&quot;id&quot;, &quot;sqft_living15&quot;, &quot;sqft_lot15&quot;, &quot;zipcode&quot;, &quot;yr_renovated&quot;)) 
+  mutate(renovated = ifelse(yr_renovated == 0, 0, 1)) %&gt;% 
+  select(-c(&quot;id&quot;, &quot;date&quot;, &quot;sqft_living15&quot;, &quot;sqft_lot15&quot;, &quot;zipcode&quot;, &quot;yr_renovated&quot;)) 
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaG91c2VfcHJpY2VzX3RpZHkgJT4lIFxuICBhbGlhcyhcInByaWNlXCIgfiAuKVxuYGBgIn0= -->
-<pre class="r"><code>house_prices_tidy %&gt;% 
-  alias(&quot;price&quot; ~ .)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxpYXMocHJpY2UgfiAuLCBkYXRhID0gaG91c2VfcHJpY2VzX3RpZHkpXG5gYGAifQ== -->
+<pre class="r"><code>alias(price ~ ., data = house_prices_tidy)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gVXNlTWV0aG9kKFwiYWxpYXNcIikgOiBcbiAgbm8gYXBwbGljYWJsZSBtZXRob2QgZm9yICdhbGlhcycgYXBwbGllZCB0byBhbiBvYmplY3Qgb2YgY2xhc3MgXCJjKCdzcGVjX3RibF9kZicsICd0YmxfZGYnLCAndGJsJywgJ2RhdGEuZnJhbWUnKVwiXG4ifQ== -->
-<pre><code>Error in UseMethod(&quot;alias&quot;) : 
-  no applicable method for 'alias' applied to an object of class &quot;c('spec_tbl_df', 'tbl_df', 'tbl', 'data.frame')&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTW9kZWwgOlxucHJpY2UgfiBiZWRyb29tcyArIGJhdGhyb29tcyArIHNxZnRfbGl2aW5nICsgc3FmdF9sb3QgKyBmbG9vcnMgKyBcbiAgICB3YXRlcmZyb250ICsgdmlldyArIGNvbmRpdGlvbiArIGdyYWRlICsgc3FmdF9hYm92ZSArIHNxZnRfYmFzZW1lbnQgKyBcbiAgICB5cl9idWlsdCArIGxhdCArIGxvbmcgKyByZW5vdmF0ZWRcblxuQ29tcGxldGUgOlxuICAgICAgICAgICAgICAoSW50ZXJjZXB0KSBiZWRyb29tcyBiYXRocm9vbXMgc3FmdF9saXZpbmcgc3FmdF9sb3QgZmxvb3JzIHdhdGVyZnJvbnQgdmlldyBjb25kaXRpb24gZ3JhZGVcbnNxZnRfYmFzZW1lbnQgIDAgICAgICAgICAgIDAgICAgICAgIDAgICAgICAgICAxICAgICAgICAgICAwICAgICAgICAwICAgICAgMCAgICAgICAgICAwICAgIDAgICAgICAgICAwICAgXG4gICAgICAgICAgICAgIHNxZnRfYWJvdmUgeXJfYnVpbHQgbGF0IGxvbmcgcmVub3ZhdGVkXG5zcWZ0X2Jhc2VtZW50IC0xICAgICAgICAgIDAgICAgICAgIDAgICAwICAgIDAgICAgICAgXG4ifQ== -->
+<pre><code>Model :
+price ~ bedrooms + bathrooms + sqft_living + sqft_lot + floors + 
+    waterfront + view + condition + grade + sqft_above + sqft_basement + 
+    yr_built + lat + long + renovated
+
+Complete :
+              (Intercept) bedrooms bathrooms sqft_living sqft_lot floors waterfront view condition grade
+sqft_basement  0           0        0         1           0        0      0          0    0         0   
+              sqft_above yr_built lat long renovated
+sqft_basement -1          0        0   0    0       </code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzcWZ0X2Jhc2VtZW50IGlzIGFuIGFsaWFzZWQgY29lZmljaWFudCAoZnJvbSBzcWZ0X2xpdmluZyAmIHNxZnRfYWJvdmUpIHNvIEkgcmVtdm9lZCBpdFxuXG5ob3VzZV9wcmljZXNfdGlkeSA8LSBob3VzZV9wcmljZXNfdGlkeSAlPiUgXG4gIHNlbGVjdCgtc3FmdF9iYXNlbWVudClcbmBgYCJ9 -->
+<pre class="r"><code># sqft_basement is an aliased coeficiant (from sqft_living &amp; sqft_above) so I remvoed it
+
+house_prices_tidy &lt;- house_prices_tidy %&gt;% 
+  select(-sqft_basement)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaG91c2VfcHJpY2VzX3RpZHkgJT4lIFxuICBnZ3BhaXJzKClcbmBgYCJ9 -->
+<pre class="r"><code>house_prices_tidy %&gt;% 
+  ggpairs()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubW9kZWwxIDwtIGxtKHByaWNlcyB+ICwgZGF0YSA9IGhvdXNlX3ByaWNlc190aWR5KVxuc3VtbWFyeShtb2RlbDEpXG5wYXIobWZyb3cgPSBjKDIsIDIpKSBcblxuIyBwbG90XG5wbG90KG1vZGVsMSlcbmBgYCJ9 -->
+<pre class="r"><code>model1 &lt;- lm(prices ~ , data = house_prices_tidy)
+summary(model1)
+par(mfrow = c(2, 2)) 
+
+# plot
+plot(model1)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSG9tZXdvcmsgLSBNYW51YWwgTW9kZWwgRGV2ZWxvcG1lbnQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKYGBgCgpgYGB7cn0KaG91c2VfcHJpY2VzIDwtIHJlYWRfY3N2KCJrY19ob3VzZV9kYXRhLmNzdiIpCmBgYAoKYGBge3J9CmhvdXNlX3ByaWNlcyAlPiUgCiAgc3VtbWFyeSgpCgpgYGAKCmBgYHtyfQojIHJlbW92aW5nIHVuZWNjYXJ5IHZhcmlhYmxlcyBhZnRlciBjaGVja2luZyB0aGVtIG91dCAKIyBEaWQgbm90IHJlbW92ZSBkYXRlIGFzIGl0IG1pZ2h0IGFmZmVjdCB0aGUgaG91c2UgcHJpY2U/IAojIENvbnZlcnRlZCB3YXRlcmZyb250IHRvIGxvZ2ljYWwKIyBDb252ZXJ0ZWQgcmVub3ZhdGVkIHRvIGEgbG9naWNhbCB2YXJpYWJsZQojIEdyYWRlIGl0IGludGVydmFsIGFzIGl0IGlzIGEgc2NhbGUKIyBjb25kaXRpb24gaXMgb3JkaW5hbCAKaG91c2VfcHJpY2VzX3RpZHkgPC0gaG91c2VfcHJpY2VzICU+JSAKICBtdXRhdGUocmVub3ZhdGVkID0gaWZlbHNlKHlyX3Jlbm92YXRlZCA9PSAwLCAwLCAxKSwgd2F0ZXJmcm9udCA9IGFzLmxvZ2ljYWwod2F0ZXJmcm9udCkpICU+JSAKICBzZWxlY3QoLWMoImlkIiwgInNxZnRfbGl2aW5nMTUiLCAic3FmdF9sb3QxNSIsICJ6aXBjb2RlIiwgInlyX3Jlbm92YXRlZCIpKSAKCmBgYAoKYGBge3J9CiMgQ291bGQgbm90IHdvcmsgb3V0IGhvdyB0byB1c2UgYWxpYXM/IApob3VzZV9wcmljZXNfdGlkeSAlPiUgCiAgYWxpYXMoInByaWNlIiB+IC4pCmBgYAoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSG9tZXdvcmsgLSBNYW51YWwgTW9kZWwgRGV2ZWxvcG1lbnQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeShHR2FsbHkpCmBgYAoKYGBge3J9CmhvdXNlX3ByaWNlcyA8LSByZWFkX2Nzdigia2NfaG91c2VfZGF0YS5jc3YiKQpgYGAKCmBgYHtyfQpob3VzZV9wcmljZXMgJT4lIAogIHN1bW1hcnkoKQoKYGBgCgpgYGB7cn0KIyByZW1vdmluZyB1bmVjY2FyeSB2YXJpYWJsZXMgYWZ0ZXIgY2hlY2tpbmcgdGhlbSBvdXQgCiMgQ29udmVydGVkIHJlbm92YXRlZCB0byBhIGxvZ2ljYWwgdmFyaWFibGUKIyBHcmFkZSBpdCBpbnRlcnZhbCBhcyBpdCBpcyBhIHNjYWxlCiMgY29uZGl0aW9uIGlzIG9yZGluYWwgCmhvdXNlX3ByaWNlc190aWR5IDwtIGhvdXNlX3ByaWNlcyAlPiUgCiAgbXV0YXRlKHJlbm92YXRlZCA9IGlmZWxzZSh5cl9yZW5vdmF0ZWQgPT0gMCwgMCwgMSkpICU+JSAKICBzZWxlY3QoLWMoImlkIiwgImRhdGUiLCAic3FmdF9saXZpbmcxNSIsICJzcWZ0X2xvdDE1IiwgInppcGNvZGUiLCAieXJfcmVub3ZhdGVkIikpIAoKYGBgCgpgYGB7cn0KYWxpYXMocHJpY2UgfiAuLCBkYXRhID0gaG91c2VfcHJpY2VzX3RpZHkpCiMgc3FmdF9iYXNlbWVudCBpcyBhbiBhbGlhc2VkIGNvZWZpY2lhbnQgKGZyb20gc3FmdF9saXZpbmcgJiBzcWZ0X2Fib3ZlKSBzbyBJIHJlbXZvZWQgaXQKCmhvdXNlX3ByaWNlc190aWR5IDwtIGhvdXNlX3ByaWNlc190aWR5ICU+JSAKICBzZWxlY3QoLXNxZnRfYmFzZW1lbnQpCmBgYAoKYGBge3IsIG1lc3NhZ2U9RkFMU0V9CmhvdXNlX3ByaWNlc190aWR5ICU+JSAKICBnZ3BhaXJzKCkKYGBgCmBgYHtyfQptb2RlbDEgPC0gbG0ocHJpY2VzIH4gLCBkYXRhID0gaG91c2VfcHJpY2VzX3RpZHkpCnN1bW1hcnkobW9kZWwxKQpwYXIobWZyb3cgPSBjKDIsIDIpKSAKCiMgcGxvdApwbG90KG1vZGVsMSkKYGBgCgo=</div>
 
 
 
