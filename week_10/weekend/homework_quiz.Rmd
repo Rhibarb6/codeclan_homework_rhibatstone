@@ -3,86 +3,88 @@ title: "Homework Quiz"
 author: "Rhi"
 output: html_document
 ---
-1. I want to predict how well 6 year-olds are going to do in their final school exams. Using the following variables am I likely under-fitting, fitting well or over-fitting? Postcode, gender, reading level, score in maths test, date of birth, family income.
+1. 
 
-  Likely overfitting because all the children with have a similar DOB as they are all 6yr
+  - Likely overfitting because all the children with have a similar DOB as they are all 6yr
   olds. Additionally, 
 
-2. If I have two models, one with an AIC score of 34,902 and the other with an AIC score of 33,559 which model should I use?
+2. 
 
-  AIC score of 33,559 as the lower AIC score is better
+  - AIC score of 33,559 as the lower AIC score is better
 
-3 I have two models, the first with: r-squared: 0.44, adjusted r-squared: 0.43. The second with: r-squared: 0.47, adjusted r-squared: 0.41. Which one should I use?
+3. 
 
-  Should use the first as it has a higher adjusted r-squared despite having a lower
+  - Should use the first as it has a higher adjusted r-squared despite having a lower
   r-squared. Meaning that the additional variables in the second model do not enhance the
   model.
 
-4. I have a model with the following errors: RMSE error on test set: 10.3, RMSE error on training data: 10.4. Do you think this model is over-fitting?
+4. 
 
-  No because
+  - No because the errors are small and similar?
   
-5. How does k-fold validation work?
-  You split the data into n folds, then make a model with the data n times using a
+5. 
+
+  - You split the data into n folds, then make a model with the data n times using a
   different fold as the test set and the rest as the training set each time. 
 
-6. What is a validation set? When do you need one?
+6. 
 
-  This is an additional subset of data that is not used in test or training and is only
+  - This is an additional subset of data that is not used in test or training and is only
   used once a final model has been chosen in order to avoid overfitting the data.
 
-7. Describe how backwards selection works.
+7. 
 
-  Start with a model that contains all the predictors, then remove the predictor that
+  - Start with a model that contains all the predictors, then remove the predictor that
   reduces the r-squared value the least. Repeat, noting the order of removed variables,
   until all variables removed. 
 
-8. Describe how best subset selection works.
+8. 
 
-  It tests models using every possible combination of predictors for each model size
+  - It tests models using every possible combination of predictors for each model size
   (number of predictors used) to find the best r-squared value for each size.
   
 
-9. It is estimated on 5% of model projects end up being deployed. What actions can you take to maximise the likelihood of your model being deployed?
+9. 
   
-- Simplicity (Occams Razor)
-- Doesn't take a long time to run
-- Do the chosen variables make sense to be there
-  - Are they appropriate
-- Ability to identify the most explanatory variables
-- Will it continue to work on new data
-- Is is standardised (will it work in all situations)
-- Sufficient documentation
+  - Simplicity (Occams Razor)
+  - Doesn't take a long time to run
+  - Do the chosen variables make sense to be there
+    - Are they appropriate
+  - Ability to identify the most explanatory variables
+  - Will it continue to work on new data
+  - Is is standardised (will it work in all situations)
+  - Sufficient documentation
 
 10. What metric could you use to confirm that the recent population is similar to the development population?
 
+  - 
 
-11. How is the Population Stability Index defined? What does this mean in words?
+11. 
 
-  Population Stability Index (PSI) compares the distribution of a scoring variable
- (predicted probability) in scoring data set to a training data set that was used to
- develop the model. The idea is to check “How the current scoring is compared to the
- predicted probability from training data set
+  - Population Stability Index (PSI) compares the distribution of a scoring variable
+  (predicted probability) in scoring data set to a training data set that was used to
+  develop the model. The idea is to check “How the current scoring is compared to the
+  predicted probability from training data set
 
 12. Above what PSI value might we need to start to consider rebuilding or recalibrating the model
  
- 
+  - 
 
-
-13. What are the common errors that can crop up when implementing a model?
+13. 
 
   - Overfitting
-  - 
+  - Not being valid on a new sample
 
 14. After performance monitoring, if we find that the discrimination is still satisfactory but the accuracy has deteriorated, what is the recommended action?
 
+  -
 
-15. Why is it important to have a unique model identifier for each model?
+15. 
 
+ - So they can be compared and also to help understand what each model is doing
 
+16. 
 
-16. Why is it important to document the modelling rationale and approach?
-
-  So that any ddecisions have clear justification and others can use and implement the
+  - So that any ddecisions have clear justification and others can use and implement the
   model without your supervision.  
 
