@@ -16,27 +16,27 @@ Until all clusters are merged into one.
 ^https://images.app.goo.gl/b2ibbtqejK3xd8kQ7^
 
 
-The output of this clustering is a **dendrogram** which represents the *hierachical* relationship between the clusters. 
+The output of this clustering is usually a **dendrogram** which represents the *hierachical* relationship between the clusters. 
 
 ![](cluster&dendrogram.gif)  
 ^https://images.app.goo.gl/GhuzA3RuHxYuzGbaA^  
 
 
-
 #### Measures of distance (similarity)
 
-Distance is what is used to define the similarity between clusters. The metric of distance needs to be defined in a way the make sense for the specific data. E.g. If clustering Just-Eat bike locations, the travel time between locations could be used
+First, distance is what is used to define the similarity between clusters. The metric of distance needs to be defined in a way the make sense for the specific data. E.g. If clustering Just-Eat bike locations, the travel time between locations could be used.
 
 #### Linkage
 
-Then linkage needs to be deterimined. This is where the distance should be measured from. 
-- Single-Linkage
-  - The closest part of each cluster
-- Complete Linkage
-  - The furthest part of each cluster
-- Mean Linkage
-  - The middle of each cluster
-- Other defined connection
+Then linkage needs to be deterimined. This is where the distance should be measured from.  
+
+- Single-Linkage  
+  - The closest part of each cluster  
+- Complete Linkage  
+  - The furthest part of each cluster  
+- Mean Linkage  
+  - The middle of each cluster  
+- Other defined connection  
 
 #### Divisive Hierarchical Clustering
 
@@ -54,11 +54,11 @@ Start with all objects as one cluster and then splitting them into smaller clust
 
   - ![](dendrogram.png){height="50%" width="50%"}
   
-- Lack of theoretical basis for decisions
-  - Specifiying distance metric
-  - Specifiying linkage
-- Doesn't work well with 
+- Lack of theoretical basis for arbitrary decisions to:
+  - Specifiy distance metric
+  - Specifiy linkage
+- Doesn't work well with:
   - Large data
   - Mixed data types
-    - E.g 
+    - Sometimes it's not straightforward to define distance between data types, age & gender for example
   - Missing data
