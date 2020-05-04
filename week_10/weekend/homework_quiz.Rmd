@@ -55,7 +55,7 @@ output: html_document
   - Is is standardised (will it work in all situations)
   - Sufficient documentation
 
-10. What metric could you use to confirm that the recent population is similar to the development population?
+10. 
 
   - 
 
@@ -66,7 +66,7 @@ output: html_document
   develop the model. The idea is to check “How the current scoring is compared to the
   predicted probability from training data set
 
-12. Above what PSI value might we need to start to consider rebuilding or recalibrating the model
+12. 
  
   - 
 
@@ -75,7 +75,7 @@ output: html_document
   - Overfitting
   - Not being valid on a new sample
 
-14. After performance monitoring, if we find that the discrimination is still satisfactory but the accuracy has deteriorated, what is the recommended action?
+14. 
 
   -
 
