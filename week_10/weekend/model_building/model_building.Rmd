@@ -12,7 +12,7 @@ library(GGally)
 library(janitor)
 ```
 
-```{r, warning = FALSE, message = FALSE}
+```{r, warning = FALSE}
 #reading in csv, cleaning names
 avocado <- read_csv("data/avocado.csv") %>% 
   clean_names() %>% 
@@ -73,7 +73,7 @@ summary(model3)
 ```
 ```{r}
 anova(model2, model3)
-# The difference is significant so will continue to use region & date
+# The difference is significant so will continue to use region   & date
 ```
 ```{r}
 par(mfrow = c(2, 2))

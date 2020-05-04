@@ -1,0 +1,40 @@
+---
+title: "Hierarchical Clustering"
+output: html_notebook
+---
+
+## What is it? 
+
+An algorithm that groups together similar objects creating clusters starting with each observation as it's own group or ***cluster***. It repeats two steps:    
+
+1. Identifies two closest clusters    
+2. Merges those two clusters  
+Until all clusters are merged into one. 
+
+*For example*:  
+![](clustering.gif)
+
+The output of this clustering is a **dendrogram** which represents the *hierachical* relationship between the clusters. 
+
+![](cluster&dendrogram.gif)  
+
+## Strengths
+
+- Easy to understand
+- Easy to do
+
+## Weaknesses
+
+- Rarely provides the best solution
+- Dendrograms are commonly misinterpreted
+
+  - ![](dendrogram.png){height="50%" width="50%"}
+  
+- Lack of theoretical basis for decisions
+  - Specifiying distance metric
+  - Specifiying linkage
+- Doesn't work well with 
+  - Large data
+  - Mixed data types
+    - E.g 
+  - Missing data
