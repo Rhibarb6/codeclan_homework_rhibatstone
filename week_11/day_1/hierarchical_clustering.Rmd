@@ -42,6 +42,10 @@ Then linkage needs to be deterimined. This is where the distance should be measu
 
 Start with all objects as one cluster and then splitting them into smaller clusters but this is rarely used in practice.
 
+
+![](dna_bears.png){height="50%" width="50%"}
+^https://towardsdatascience.com/hierarchical-clustering-and-its-applications-41c1ad4441a6^
+
 ## Strengths
 
 - Easy to understand
