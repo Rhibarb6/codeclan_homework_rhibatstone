@@ -98,8 +98,10 @@ roc_obj_model2 <- model2_pred %>%
 
 roc_obj_model3 <- model3_pred %>%
   roc(response = churn, predictor = pred)
+```
 
 
+```{r}
 ggroc(data = roc_obj_model1, legacy.axes = TRUE) +
   coord_fixed()
 
@@ -109,5 +111,11 @@ ggroc(data = roc_obj_model2, legacy.axes = TRUE) +
 ggroc(data = roc_obj_model3, legacy.axes = TRUE) +
   coord_fixed()
 
+```
+
+```{r}
+auc(roc_obj_model1)
+auc(roc_obj_model2)
+auc(roc_obj_model3)
 ```
 
