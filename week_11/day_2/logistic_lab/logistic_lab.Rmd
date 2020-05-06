@@ -7,6 +7,8 @@ library(tidyverse)
 library(readxl)
 library(janitor)
 library(GGally)
+library(pROC)
+library(modelr)
 ```
 
 ```{r}
@@ -68,5 +70,44 @@ model3 <- glm(churn ~ contract,
               family = binomial(link = "logit"))
 
 summary(model3)
+```
+
+
+```{r}
+model1_pred <- tidy_telecomms %>%
+  add_predictions(model1, type = "response")
+
+model2_pred <- tidy_telecomms %>%
+  add_predictions(model2, type = "response")
+
+model3_pred <- tidy_telecomms %>%
+  add_predictions(model3, type = "response")
+
+head(model1_pred)
+
+```
+
+
+
+```{r}
+roc_obj_model1 <- model1_pred %>%
+  roc(response = churn, predictor = pred)
+
+roc_obj_model2 <- model2_pred %>%
+  roc(response = churn, predictor = pred)
+
+roc_obj_model3 <- model3_pred %>%
+  roc(response = churn, predictor = pred)
+
+
+ggroc(data = roc_obj_model1, legacy.axes = TRUE) +
+  coord_fixed()
+
+ggroc(data = roc_obj_model2, legacy.axes = TRUE) +
+  coord_fixed()
+
+ggroc(data = roc_obj_model3, legacy.axes = TRUE) +
+  coord_fixed()
+
 ```
 
