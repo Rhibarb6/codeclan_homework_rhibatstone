@@ -103,13 +103,22 @@ roc_obj_model3 <- model3_pred %>%
 
 ```{r}
 ggroc(data = roc_obj_model1, legacy.axes = TRUE) +
-  coord_fixed()
+  coord_fixed() +
+  labs(
+    title = "Senior Citizen"
+  )
 
 ggroc(data = roc_obj_model2, legacy.axes = TRUE) +
-  coord_fixed()
+  coord_fixed() +
+  labs(
+    title = "Tenure"
+  )
 
 ggroc(data = roc_obj_model3, legacy.axes = TRUE) +
-  coord_fixed()
+  coord_fixed() +
+  labs(
+    title = "Contract"
+  )
 
 ```
 
