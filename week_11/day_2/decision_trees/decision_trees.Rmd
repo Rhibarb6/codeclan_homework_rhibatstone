@@ -1,0 +1,147 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(rpart)
+library(rpart.plot)
+library(tidyverse)
+library(janitor)
+library(modelr)
+library(yardstick)
+
+titanic_set <- read_csv('data/titanic_decision_tree_data.csv')
+
+shuffle_index <- sample(1:nrow(titanic_set))
+
+# shuffle the data so class order isn't in order - need this for training/testing split later on 
+titanic_set <- titanic_set[shuffle_index, ]
+```
+
+```{r}
+tidy_titanic <- titanic_set %>% 
+  drop_na(survived) %>% 
+  mutate(sex = as.factor(sex),
+         survived = factor(survived,
+                           levels = c(0, 1),
+                           labels = c("no", "yes")),
+         class = factor(pclass, 
+                         levels = c(1, 2, 3),
+                         labels = c("upper class", "middle class", "lower class")),
+         embarked = factor(embarked, 
+                           levels = c("C", "Q", "S"),
+                           labels = c("Cherbourg", "Queenstown", "Southampton")),
+         age_status = ifelse(age <= 16, "child", "adult")
+         ) %>% 
+  select(sex, class, embarked, sib_sp, parch, survived, age_status) %>% 
+  drop_na()
+```
+1.
+```{r}
+
+tidy_titanic %>% 
+  ggplot(aes(survived)) +
+  geom_bar(position = "dodge")
+
+tidy_titanic %>% 
+  ggplot(aes(survived, fill = sex)) +
+  geom_bar(position = "dodge")
+
+tidy_titanic %>% 
+  ggplot(aes(survived, fill = age_status)) +
+  geom_bar(position = "dodge")
+
+tidy_titanic %>% 
+  ggplot(aes(survived, fill = class)) +
+  geom_bar(position = "dodge")
+
+tidy_titanic %>% 
+  ggplot(aes(sib_sp)) +
+  geom_bar(position = "dodge")
+```
+
+```{r}
+# get how many rows we have in total to work out the percentage
+n_data <- nrow(tidy_titanic)
+
+# create a test sample index
+test_index <- sample(1:n_data, size = n_data*0.2)
+
+# create test set
+titanic_test  <- slice(tidy_titanic, test_index)
+
+# create training set
+titanic_train <- slice(tidy_titanic, -test_index)
+```
+
+```{r}
+titanic_test %>% 
+  tabyl(survived)
+
+titanic_train %>% 
+  tabyl(survived)
+# Seems balanced
+```
+
+```{r}
+titanic_fit <- rpart(survived ~ ., 
+                     data = titanic_train, 
+                     method = 'class')
+
+rpart.plot(titanic_fit, yesno = 2)
+```
+
+important vaiables: sex, age, class, sib_sp
+what does each node tell you:  are more likely to die
+highest chance of surviving? High class women and children without siblings
+lowest: male, low class, adults
+
+```{r}
+# add the predictions
+titanic_test_pred <- titanic_test %>%
+                 add_predictions(titanic_fit, type = 'class')
+```
+
+```{r}
+titanic_test_pred %>% 
+  select(sex, class, age_status, sib_sp, pred)
+```
+
+
+```{r}
+
+conf_mat <- titanic_test_pred %>%
+              conf_mat(truth = survived, estimate = pred)
+
+conf_mat
+```
+77 - true negatative (correctly predicited 77 deaths)
+28 - true positives (correctly predicited 28 survivors)
+8 - false positive (incorrectly predicited 8 survivors)
+29 - false negatives (incorrectly predicited 29 deaths)
+
+
+
+```{r}
+accuracy <- titanic_test_pred %>%
+ accuracy(truth = survived, estimate = pred)
+
+accuracy 
+```
+
+```{r}
+rpart.predict(titanic_fit, newdata=titanic_test[1:3,], rules=TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+---
+title: "Logistic Lab"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(GGally)
+```
+
+```{r}
+telecomms_churn <- read_excel("telecomms_churn.xlsx") %>% 
+  clean_names()
+
+summary(telecomms_churn)
+
+tidy_telecomms <- telecomms_churn %>% 
+  drop_na() %>% 
+  select(-customer_id) %>% 
+  mutate(senior_citizen = factor(senior_citizen,
+                                    levels = c(0, 1),
+                                    labels = c("true", "false"))
+         ) %>% 
+  mutate_if(is.character, as.factor)
+  
+```
+
+```{r}
+tidy_telecomms %>% 
+  ggplot(aes(churn, fill = gender)) +
+  geom_bar(position = "dodge")
+# gender not likley to affect
+
+tidy_telecomms %>% 
+  ggplot(aes(churn, fill = dependents)) +
+  geom_bar(position = "dodge")
+# dependants might inluence
+tidy_telecomms %>% 
+  ggplot(aes(churn, fill = contract)) +
+  geom_bar(position = "dodge")
+# dependants might inluence
+tidy_telecomms %>% 
+  ggplot(aes(churn, fill = internet_service)) +
+  geom_bar(position = "dodge")
+# dependants might inluence
+```
+
+```{r fig.height=12, fig.width=15, message=FALSE}
+ggpairs(tidy_telecomms,  mapping = aes(colour = churn, alpha = 0.5))
+```
+
+```{r}
+model1 <- glm(churn ~ senior_citizen, 
+              data = tidy_telecomms, 
+              family = binomial(link = "logit"))
+
+summary(model1)
+
+model2 <- glm(churn ~ tenure, 
+              data = tidy_telecomms, 
+              family = binomial(link = "logit"))
+
+summary(model2)
+
+model3 <- glm(churn ~ contract, 
+              data = tidy_telecomms, 
+              family = binomial(link = "logit"))
+
+summary(model3)
+```
+
