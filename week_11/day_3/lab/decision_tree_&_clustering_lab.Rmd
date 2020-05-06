@@ -9,6 +9,8 @@ library(tidyverse)
 library(rpart)
 library(rpart.plot)
 library(janitor)
+library(factoextra)
+library(broom)
 ```
 
 ```{r}
@@ -54,18 +56,77 @@ avocado_fit <- rpart(type ~ .,
                      data = avocado_train, 
                      method = 'class')
 
-rpart.plot(avocado_fit, yesno = 2)
+decision_tree <- rpart.plot(avocado_fit, yesno = 2)
+
+rpart.rules(avocado_fit, cover = TRUE)
+
+```
+
+## Clustering
+```{r}
+arrests_scale <- USArrests %>%
+  clean_names() %>% 
+  rownames_to_column("state") %>%
+  mutate_if(is.numeric, scale) %>% 
+  column_to_rownames("state")
+
+summary(arrests_scale)
+```
+
+```{r}
+plot(arrests_scale)
+```
+
+```{r}
+#Silhouette
+fviz_nbclust(arrests_scale, kmeans, method = "silhouette")
+#Gap Statistic
+fviz_nbclust(arrests_scale, kmeans, method = "gap_stat")
+
+
+```
+
+```{r}
+# Elbow Method
+max_k <- 20
+k_clusters <- tibble(k = 2:max_k) %>%
+  mutate(
+    kclust = map(k, ~ kmeans(arrests_scale, .x, nstart = 25)), 
+    tidied = map(kclust, tidy),
+    glanced = map(kclust, glance),
+    augmented = map(kclust, augment, arrests_scale)
+  )
+k_clusters
+
+#---------------
+
+clusterings <- k_clusters %>%
+  unnest(glanced)
+clusterings
+
+#----------------
+
+ggplot(clusterings, aes(x=k, y=tot.withinss)) +
+  geom_point() +
+    geom_line() +
+    scale_x_continuous(breaks = seq(1, 20, by = 1))
+```
+
+Chose k = 2 because two of the three methods gave that value
+
+```{r}
+kmeans_arrests <- kmeans(arrests_scale, 2, nstart = 25) 
+fviz_cluster(kmeans_arrests, arrests_scale, frame.type = "norm")
 ```
 
 
-
-
-
-
-
-
-
-
+```{r}
+clusterings %>% 
+  unnest(cols = c(augmented)) %>%
+  filter(k == 2) %>%
+  group_by(.cluster) %>%
+  summarise(mean(murder), mean(assault), mean(urban_pop), mean(rape), n())
+```
 
 
 
