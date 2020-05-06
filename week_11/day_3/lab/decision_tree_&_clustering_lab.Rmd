@@ -1,0 +1,76 @@
+---
+title: ""
+output: html_notebook
+---
+## Decision tree
+
+```{r}
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(janitor)
+```
+
+```{r}
+avocados <- read_csv("data/avocado.csv") %>% 
+  clean_names()
+```
+
+```{r}
+clean_avocados <- avocados %>% 
+  mutate_if(is.character, as_factor) %>% 
+  mutate(year = factor(year)) %>% 
+  select(-c("x1", "date")) %>% 
+  drop_na()
+
+```
+
+```{r}
+# get how many rows we have in total to work out the percentage
+n_data <- nrow(clean_avocados)
+
+# create a test sample index
+test_index <- sample(1:n_data, size = n_data*0.2)
+
+# create test set
+avocado_test <- slice(clean_avocados, test_index)
+
+# create training set
+avocado_train <- slice(clean_avocados, -test_index)
+```
+
+```{r}
+avocado_test %>%
+ tabyl(type)
+```
+
+```{r}
+avocado_train %>%
+  tabyl(type)
+```
+
+```{r}
+avocado_fit <- rpart(type ~ ., 
+                     data = avocado_train, 
+                     method = 'class')
+
+rpart.plot(avocado_fit, yesno = 2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
