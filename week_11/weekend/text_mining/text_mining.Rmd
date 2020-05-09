@@ -1,0 +1,131 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(forecast)
+library(janeaustenr)
+library(tidytext)
+```
+
+1 - Most common words
+
+Pride & Prejudice
+```{r}
+prideprejudice_words <- tibble(
+  sentence = prideprejudice,
+  id        = 1:length(prideprejudice)
+  ) %>% 
+  unnest_tokens(
+    word,
+    sentence
+  ) %>% 
+  mutate(word = gsub("_", "", word)
+         )
+
+prideprejudice_words
+```
+
+Sense & Sensibility
+```{r}
+sensesensibility_words <- tibble(
+  sentence = sensesensibility,
+  id        = 1:length(sensesensibility)
+  ) %>% 
+  unnest_tokens(
+    word,
+    sentence
+  )
+
+sensesensibility_words
+```
+
+1 - Most common words in Pride & Prejudice
+```{r}
+prideprejudice_words %>% 
+  group_by(word) %>% 
+  count() %>% 
+  arrange(desc(n))
+```
+
+2 - Without stop words P&P
+```{r}
+prideprejudice_n_words <- prideprejudice_words %>% 
+  group_by(word) %>%
+  count() %>% 
+  anti_join(stop_words) %>% 
+  arrange(desc(n))
+```
+
+1 - Most common words in Sense & Sensibility
+```{r}
+sensesensibility_words %>% 
+  group_by(word) %>% 
+  count() %>% 
+  arrange(desc(n))
+```
+
+2 - Without stop words S&S
+```{r}
+sensesensibility_n_words <- sensesensibility_words %>% 
+  group_by(word) %>% 
+  count() %>% 
+  anti_join(stop_words) %>% 
+  arrange(desc(n))
+
+sensesensibility_top_words <- sensesensibility_n_words %>% 
+  head(20)
+```
+
+3 - Common sentiment words
+
+```{r}
+sensesensibility_sentiments <- sensesensibility_n_words %>% 
+  inner_join(get_sentiments("afinn")) %>% 
+  group_by(word) %>% 
+  mutate(value = mean(value), book = "Pride")
+```
+```{r}
+prideprejudice_sentiments <- prideprejudice_n_words %>% 
+  inner_join(get_sentiments("afinn")) %>% 
+  group_by(word) %>% 
+  mutate(value = mean(value), book = "Sense")
+
+books <- prideprejudice_sentiments %>% 
+  bind_rows(sensesensibility_sentiments)
+```
+
+```{r}
+books %>% 
+  group_by(book, value) %>% 
+  mutate(mean_n = mean(n)) %>% 
+  ggplot(aes(value, mean_n, colour = book)) +
+  geom_line() +
+  labs(
+    x = "Sentiment",
+    y = "Average number of words",
+    colour = "Book"
+    ) 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
