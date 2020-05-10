@@ -1,0 +1,54 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(janitor)
+library(GGally)
+```
+
+```{r}
+orange_juice <- read_csv("data/orange_juice.csv") %>% 
+  clean_names()
+summary(orange_juice)
+```
+```{r}
+# Trabsform purchase to logical
+orange_juice_tidy <- orange_juice %>% 
+  mutate(purchase_mm = purchase == "MM",
+         store_id = as.factor(store_id),
+         special_ch = as.logical(special_ch),
+         special_mm = as.logical(special_mm)
+         ) %>% 
+  # removing variables
+  select(-c(store7, purchase, store, ends_with("price_diff"), disc_mm, disc_ch))
+  # store7 & store are accounted for in store_id
+  # purchase transformed so can be dropped
+  # Price diff is an alias for other variables
+  # disc_x alias for price and sale price
+
+
+# removing weekof_purchase to test in anova
+orange_juice_tidy_1 <- orange_juice_tidy %>% 
+  select(-weekof_purchase)
+
+
+```
+
+
+```{r}
+# Including weekof purchase
+model1 <- glm(purchase_mm ~ ., data = orange_juice_tidy, family = binomial(link = 'logit'))
+
+# Not including weekof purchase
+model2 <- glm(purchase_mm ~ ., data = orange_juice_tidy_1, family = binomial(link = 'logit'))
+
+# no significant difference so will drop weekof_pruchase all together.
+anova(model1, model2)
+
+alias(model2)
+```
+
+
+

@@ -1,0 +1,74 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(cluster)
+library(factoextra)
+library(dendextend)
+library(janitor)
+```
+
+```{r}
+mall_customers <- read_csv("mall_customers.csv") %>% 
+  clean_names()
+```
+
+```{r}
+mall_customers <- mall_customers %>% 
+  mutate_if(is.character, as_factor) %>%
+  select(-customer_id) %>% 
+  drop_na()
+```
+
+```{r}
+mall_customers_scale <- mall_customers %>%
+  rownames_to_column("state") %>%
+  mutate_if(is.numeric, scale) %>% 
+  column_to_rownames("state")
+```
+
+
+```{r}
+plot(mall_customers_scale)
+```
+choosing number of clusters
+```{r}
+# Set min & max number of clusters want to look at 
+k_clusters <- tibble(k = 2:20) %>%
+  mutate(
+    kclust = map(k, ~ kmeans(mall_customers_scale, .x, nstart = 25)), 
+    tidied = map(kclust, tidy),
+    glanced = map(kclust, glance),
+    augmented = map(kclust, augment, mall_customers_scale)
+  )
+
+k_clusters
+
+#---------------
+
+clusterings <- k_clusters %>%
+  unnest(glanced)
+clusterings
+
+#----------------
+
+ggplot(clusterings, aes(x=k, y=tot.withinss)) +
+  geom_point() +
+    geom_line() +
+    scale_x_continuous(breaks = seq(1, 20, by = 1))
+```
+
+```{r}
+#Silhouette
+fviz_nbclust(mall_customers_scale, kmeans, method = "silhouette")
+#Gap Statistic
+fviz_nbclust(mall_customers_scale, kmeans, method = "gap_stat")
+
+```
+
+```{r}
+
+```
+
