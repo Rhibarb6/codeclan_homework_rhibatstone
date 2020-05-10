@@ -6,6 +6,7 @@ output: html_notebook
 library(tidyverse)
 library(janitor)
 library(GGally)
+library(glmulti)
 ```
 
 ```{r}
@@ -28,7 +29,6 @@ orange_juice_tidy <- orange_juice %>%
   # Price diff is an alias for other variables
   # disc_x alias for price and sale price
 
-
 # removing weekof_purchase to test in anova
 orange_juice_tidy_1 <- orange_juice_tidy %>% 
   select(-weekof_purchase)
@@ -49,6 +49,105 @@ anova(model1, model2)
 
 alias(model2)
 ```
+```{r fig.height=10, fig.width=15, message=FALSE}
+ggpairs(orange_juice_tidy_1)
+```
+
+```{r}
+model3 <- glm(purchase_mm ~ special_mm + special_ch, data = orange_juice_tidy, family = binomial(link = 'logit'))
+summary(model3)
+model4 <- glm(purchase_mm ~ special_mm + special_ch + pct_disc_mm + pct_disc_ch, data = orange_juice_tidy, family = binomial(link = 'logit'))
+summary(model4)
+
+```
 
 
+## Trying the automated approach with glmulti()
+
+```{r}
+#Creating test and train data samples
+n_data <- nrow(orange_juice_tidy_1)
+test_index <- sample(1:n_data, size = n_data*0.1)
+
+test  <- slice(orange_juice_tidy_1, test_index)
+train <- slice(orange_juice_tidy_1, -test_index)
+```
+
+
+```{r}
+# exhaustive search
+glmulti_search_all_mains <- glmulti(
+  purchase_mm ~ ., 
+  data = train,
+  level = 1,               # No interactions considered, main effects only
+  method = "h",            # Exhaustive approach
+  crit = "bic",            # BIC as criteria
+  confsetsize = 10,        # Keep 10 best models
+  plotty = F, 
+  report = T,              # No plots, but provide interim reports
+  fitfunction = "glm",     # glm function
+  family = binomial(link = "logit")) # binomial family for logistic regression
+
+summary(glmulti_search_all_mains)
+```
+
+```{r}
+summary(glm(purchase_mm ~ loyal_ch + sale_price_mm + sale_price_ch, data = train, family = binomial(link = "logit")))
+
+summary(glm(purchase_mm ~ loyal_ch + sale_price_mm + sale_price_ch, data = test, family = binomial(link = "logit")))
+```
+
+```{r}
+glmulti_search_previous_mains_one_pair <- glmulti(
+  purchase_mm ~ loyal_ch + sale_price_mm + sale_price_ch, 
+  data = train,
+  level = 2,               # Interactions considered
+  method = "h",            # Exhaustive approach
+  crit = "bic",            # BIC as criteria
+  confsetsize = 10,        # Keep 10 best models
+  marginality = TRUE,      # consider pairs only if both main effects in model
+  minsize = 6,             # minsize, maxsize and marginality here force 
+  maxsize = 6,             # inclusion of a single pair beyond the five main effects
+  plotty = F, 
+  report = T,              # No plots, but provide interim reports
+  fitfunction = "glm",     # glm function
+  family = binomial(link = "logit")) # binomial family for logistic regression
+
+summary(glmulti_search_previous_mains_one_pair)
+```
+
+```{r}
+summary(glm(purchase_mm ~ 1 + loyal_ch + sale_price_mm + sale_price_ch + sale_price_mm:loyal_ch + sale_price_ch:loyal_ch + sale_price_ch:sale_price_mm, data = train, family = binomial(link = "logit")))
+
+summary(glm(purchase_mm ~ 1 + loyal_ch + sale_price_mm + sale_price_ch + sale_price_mm:loyal_ch + sale_price_ch:loyal_ch + sale_price_ch:sale_price_mm, data = test, family = binomial(link = "logit")))
+
+
+```
+
+
+
+```{r}
+# Genetic algorithm
+glmulti_ga_search_with_pairs_aic <- glmulti(
+  purchase_mm ~ .,
+  data = train,
+  level = 2,               # Interactions considered
+  method = "g",            # Genetic algorithm approach
+  crit = "aic",            # AIC as criteria
+  confsetsize = 10,        # Keep 10 best models
+  marginality = TRUE,      # consider pairs only if both main effects in model
+  plotty = F, 
+  report = T,              # No plots, but provide interim reports
+  fitfunction = "glm",     # glm function
+  family = binomial(link = "logit")) # binomial family for logistic regression
+
+summary(glmulti_ga_search_with_pairs_aic)
+```
+
+
+
+
+```{r}
+summary(glm(purchase_mm ~ 1 + store_id + price_ch + price_mm + special_ch + special_mm + loyal_ch + sale_price_mm + sale_price_ch + pct_disc_mm + pct_disc_ch + special_ch:price_ch + special_ch:price_mm + special_mm:price_ch + sale_price_mm:price_ch + sale_price_mm:special_ch + sale_price_ch:sale_price_mm + pct_disc_mm:price_mm + pct_disc_mm:special_ch + pct_disc_mm:special_mm + pct_disc_ch:price_ch + pct_disc_ch:price_mm + pct_disc_ch:special_ch + pct_disc_ch:sale_price_ch + pct_disc_ch:pct_disc_mm + store_id:price_mm + store_id:special_ch, data = orange_juice_tidy_1, family = binomial(link = "logit")))
+```
 
