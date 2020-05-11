@@ -72,6 +72,12 @@ test_index <- sample(1:n_data, size = n_data*0.1)
 test  <- slice(orange_juice_tidy_1, test_index)
 train <- slice(orange_juice_tidy_1, -test_index)
 ```
+```{r}
+train %>%
+  tabyl(purchase_mm)
+test %>%
+  tabyl(purchase_mm)
+```
 
 
 ```{r}
